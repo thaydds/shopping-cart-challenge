@@ -8,24 +8,23 @@ import Remove from "@material-ui/icons/Remove"
 import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 
-
 const Product = (props) => {
-    const { product } = props
+    const { product, countAdd, countSub } = props
     return(
         <ListItem>
             <ListItemIcon>
-                <IconButton edge="end" aria-label="add">
+                <IconButton onClick={() => countAdd(product.name)} edge="end" aria-label="add">
                     <Add />
                 </IconButton>
             </ListItemIcon> 
             <Typography variant="body2">{product.amount}</Typography>
             <ListItemIcon>
-                <IconButton edge="end" aria-label="delete">
+                <IconButton onClick={() => countSub(product.name)} edge="end" aria-label="delete">
                     <Remove />
                 </IconButton>
             </ListItemIcon>       
             <ListItemText primary={product.name} />
-            <Typography variant="body2">{product.price}</Typography>
+            <Typography variant="body2">{product.price * product.amount}</Typography>
         </ListItem>     
     )
 }
@@ -33,5 +32,7 @@ const Product = (props) => {
 export default Product
 
 Product.propTypes = {
-    product: PropTypes.object
+    product: PropTypes.object,
+    countAdd: PropTypes.func.isRequired,
+    countSub: PropTypes.func.isRequired
   }
