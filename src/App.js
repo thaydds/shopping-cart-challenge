@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider'
@@ -48,7 +48,8 @@ const initialState = {
 
 export default function Checkout() {
   const [ cart, setCart ] = useState(initialState)
-  const classes = useStyles();
+
+  const classes = useStyles()
 
   const countAdd = ( productName ) => {
     const clone = [...cart.products].map( s => Object.assign({}, s));
@@ -73,13 +74,45 @@ export default function Checkout() {
   }
 
 
+  const cartTotal = () => {
+
+    const subtotal = cart.products.reduce((sum, product) => {
+      return sum + (product.amount * product.price)
+    }, 0)
+
+    const kg = cart.products.reduce((sum, product) => {
+      return sum + product.amount
+    }, 0)
+
+    let shipping = 0
+
+    if(kg <= 10){
+      shipping += 30
+    }
+
+    if(kg > 10){
+      shipping = 30 + (Math.floor((kg/5) - 2) * 7)
+    }
+
+    if(kg > 400) {
+      shipping = 0
+    }
+    
+    setCart({...cart, subtotal: subtotal, total: subtotal + shipping, kg: kg, shipping: shipping})
+
+  }
+  
+  useEffect( () => {
+    cartTotal()
+  }, [cart.products]) 
+
   return (
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <CartHeader />
           <ProductList  products={cart.products} countAdd={countAdd} countSub={countSub} />
           <Divider/>
-          <CartSessions />
+          <CartSessions subtotal={cart.subtotal} total={cart.total} shipping={cart.shipping} />
           <Divider/> 
 		  <Cupom />
           <Divider />
