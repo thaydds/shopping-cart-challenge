@@ -7,15 +7,25 @@ const products = [
     { name: 'Apple', desc: 'sweet and delicious', price: 8, amount: 0},
     { name: 'Banana', desc: 'the best of the world', price: 4, amount: 0},
     { name: 'Orange', desc: 'orange orange',  price: 3, amount: 0}
-]   
+]
+
+// Percentual coupon: are coupons that reduce an amount in percentage of the cost on subtotal.
+// Fixed coupon: are coupons with fixed amounts that should reduce over the TOTAL.
+// Free Shipping: make the shipping price become 0 when applied, and should have a minimum subtotal requirement
+
+const enabledCupons = [
+    {key: 'A', type: 'Percentual', effect: 0.3, active: false},
+    {key: 'FOO', type: 'Fixed', effect: 100, active: false},
+    {key: 'FOO', type: 'Free Shipping', effect: 0, active: false}
+]
 
 const initialState = {
     products: products,
     shipping: 0,
     subtotal: 0,
     total: 0,
-    kg: 0,
-    cupoms: []
+    cupoms: enabledCupons,
+    cumpom: ''
   }
 
 // cart reducer
