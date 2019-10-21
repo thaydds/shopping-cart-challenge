@@ -21,15 +21,15 @@ const initialState = {
 function cart(state = initialState, action){
     switch(action.type){
         case CART_PRODUCT_AMOUNT_ADD:
-            return {...state, products: state.products.map( p => {
-               if (p.name == action.productName) {
+            return {...state, products: state.products.forEach( p => {
+               if (p.name === action.productName) {
                    p.amount += 1
                    return p
                }
             })}
         case CART_PRODUCT_AMOUNT_SUB:
-            return {...state, products: state.products.map( p => {
-                if (p.name == action.productName) {
+            return {...state, products: state.products.forEach( p => {
+                if (p.name === action.productName) {
                     p.amount -= 1
                     return p
                 }
