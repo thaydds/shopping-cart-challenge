@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider'
 import ProductList from './components/ProductList'
@@ -7,16 +7,37 @@ import CartSessions from './components/CartSessions'
 import Cupom from './components/Cupom'
 import PurchaseButton from './components/PurchaseButton'
 import { useStyles } from './appStyle'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { CART_SUBTOTAL_CALC, CART_TOTAL_CALC, CART_SHIPPING_CALC } from './actions'
  
 export default function App() {
 
   const cart = useSelector( state => state)
   const classes = useStyles()
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+	dispatch({type: CART_SUBTOTAL_CALC})
+  }, [cart.products])
+
+  useEffect(() => {
+	dispatch({type: CART_TOTAL_CALC})
+  }, [cart.subtotal, cart.shipping])
+
+  useEffect(() => {
+	const kg = cart.products.reduce((sum, product) => {
+		return sum + product.amount
+	  }, 0)
+	let shippingPrice = kg === 0 ?  0 : 30	
+	if(kg > 10){
+		shippingPrice += (Math.floor((kg/5) - 2) * 7)
+	}
+	dispatch({ type: CART_SHIPPING_CALC, shippingPrice: shippingPrice})
+  }, [cart.products])
+  
   return (
       <main className={classes.layout}>
-        <Paper className={classes.paper}s>
+        <Paper className={classes.paper}>
           <CartHeader />
           <ProductList  products={cart.products}/>
           <Divider/>

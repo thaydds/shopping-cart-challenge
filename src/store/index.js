@@ -1,5 +1,7 @@
 import { createStore } from 'redux'
-import {CART_PRODUCT_AMOUNT_ADD, CART_PRODUCT_AMOUNT_SUB} from '../actions'
+import {CART_PRODUCT_AMOUNT_ADD, CART_PRODUCT_AMOUNT_SUB, 
+        CART_SUBTOTAL_CALC, CART_TOTAL_CALC, 
+        CART_SHIPPING_CALC} from '../actions'
 
 const products = [
     { name: 'Apple', desc: 'sweet and delicious', price: 8, amount: 0},
@@ -35,6 +37,14 @@ function cart(state = initialState, action){
                 }
                 return p
             })}
+        case CART_SUBTOTAL_CALC: 
+            return {...state, subtotal: state.products.reduce((sum, product) => {
+                return sum + (product.amount * product.price)
+              }, 0)}
+        case CART_TOTAL_CALC: 
+            return {...state, total: state.subtotal + state.shipping}
+        case CART_SHIPPING_CALC: 
+            return {...state, shipping: action.shippingPrice}      
         default:
             return state
     }
