@@ -19,20 +19,21 @@ const initialState = {
 // cart reducer
 
 function cart(state = initialState, action){
+    console.log('action', action)
     switch(action.type){
         case CART_PRODUCT_AMOUNT_ADD:
-            return {...state, products: state.products.forEach( p => {
+            return {...state, products: state.products.map( p => {
                if (p.name === action.productName) {
                    p.amount += 1
-                   return p
                }
+               return p
             })}
         case CART_PRODUCT_AMOUNT_SUB:
-            return {...state, products: state.products.forEach( p => {
-                if (p.name === action.productName) {
+            return {...state, products: state.products.map( p => {
+                if (p.name === action.productName && p.amount > 0) {
                     p.amount -= 1
-                    return p
                 }
+                return p
             })}
         default:
             return state

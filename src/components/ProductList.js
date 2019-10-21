@@ -5,11 +5,11 @@ import Product from './Product'
 
 
 const ProductList = (props) => {
-    const { products, countAdd, countSub } = props
+    const { products } = props
     return(
         <List disablePadding>
             {products.map(product => 
-               <Product countAdd={countAdd} countSub={countSub} key={product.name} product={product} />
+               <Product key={product.name} product={product} />
             )}
           </List>
     )
@@ -19,6 +19,4 @@ export default ProductList
 
 ProductList.propTypes = {
     products: PropTypes.array.isRequired,
-    countAdd: PropTypes.func.isRequired,
-    countSub: PropTypes.func.isRequired
   }

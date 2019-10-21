@@ -7,19 +7,22 @@ import Add from "@material-ui/icons/Add"
 import Remove from "@material-ui/icons/Remove"
 import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
+import {useDispatch} from 'react-redux'
+import {CART_PRODUCT_AMOUNT_ADD, CART_PRODUCT_AMOUNT_SUB} from '../actions'
 
 const Product = (props) => {
-    const { product, countAdd, countSub } = props
+    const { product } = props
+    const dispatch = useDispatch()
     return(
         <ListItem>
             <ListItemIcon>
-                <IconButton onClick={() => countAdd(product.name)} edge="end" aria-label="add">
+                <IconButton onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_ADD, productName: product.name})} edge="end" aria-label="add">
                     <Add />
                 </IconButton>
             </ListItemIcon> 
             <Typography variant="body2">{product.amount}</Typography>
             <ListItemIcon>
-                <IconButton onClick={() => countSub(product.name)} edge="end" aria-label="delete">
+                <IconButton onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_SUB, productName: product.name})} edge="end" aria-label="delete">
                     <Remove />
                 </IconButton>
             </ListItemIcon>       
@@ -33,6 +36,4 @@ export default Product
 
 Product.propTypes = {
     product: PropTypes.object,
-    countAdd: PropTypes.func.isRequired,
-    countSub: PropTypes.func.isRequired
   }
