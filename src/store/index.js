@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
 import {CART_PRODUCT_AMOUNT_ADD, CART_PRODUCT_AMOUNT_SUB, 
         CART_SUBTOTAL_CALC, CART_TOTAL_CALC, 
-        CART_SHIPPING_CALC} from '../actions'
+        CART_SHIPPING_CALC, CART_CUPOM_SUB, CART_CUPOM_ADD} from '../actions'
 
 const products = [
     { name: 'Apple', desc: 'sweet and delicious', price: 8, amount: 0},
@@ -15,23 +15,23 @@ const products = [
 
 const enabledCupons = [
     {key: 'A', type: 'Percentual', effect: 0.3, active: false},
-    {key: 'FOO', type: 'Fixed', effect: 100, active: false},
-    {key: 'FOO', type: 'Free Shipping', effect: 0, active: false}
+    {key: 'FOO', type: 'Fixed', effect: 10, active: false},
+    {key: 'C', type: 'Free Shipping', effect: 0, active: false}
 ]
 
-const initialState = {
+export const initialState = {
     products: products,
     shipping: 0,
     subtotal: 0,
     total: 0,
     cupoms: enabledCupons,
-    cumpom: ''
-  }
+    cupom: []
+}
 
 // cart reducer
 
-function cart(state = initialState, action){
-    console.log('action', action)
+export function cart(state = initialState, action){
+    //console.log('action', action)
     switch(action.type){
         case CART_PRODUCT_AMOUNT_ADD:
             return {...state, products: state.products.map( p => {
@@ -52,9 +52,13 @@ function cart(state = initialState, action){
                 return sum + (product.amount * product.price)
               }, 0)}
         case CART_TOTAL_CALC: 
-            return {...state, total: state.subtotal + state.shipping}
+            return {...state, total: action.total}
         case CART_SHIPPING_CALC: 
-            return {...state, shipping: action.shippingPrice}      
+            return {...state, shipping: action.shippingPrice}
+        case CART_CUPOM_ADD: 
+            return {...state, cupom: action.enabledCupom}
+        case CART_CUPOM_SUB: 
+            return {...state, cupom: []}      
         default:
             return state
     }

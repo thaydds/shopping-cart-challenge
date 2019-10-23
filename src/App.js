@@ -21,8 +21,13 @@ export default function App() {
   }, [cart.products])
 
   useEffect(() => {
-	dispatch({type: CART_TOTAL_CALC})
-  }, [cart.subtotal, cart.shipping])
+	const discount = cart.cupom.length > 0 && cart.cupom[0].type === 'Fixed' ? cart.cupom[0].effect : 0
+	let total = (cart.subtotal + cart.shipping) - discount
+	if(total < 0){
+		total = 0
+	}
+	dispatch({type: CART_TOTAL_CALC, total: total})
+  }, [cart.subtotal, cart.shipping, cart.cupom])
 
   useEffect(() => {
 	const kg = cart.products.reduce((sum, product) => {
