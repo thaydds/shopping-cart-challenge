@@ -5,10 +5,11 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Input from "@material-ui/core/Input"
 import Button from "@material-ui/core/Button"
 import {useDispatch, useSelector} from 'react-redux'
+import {CART_CUPOM_ADD, CART_CUPOM_SUB} from '../actions'
 
-const Cupom = (props) => {
+const Cupom = () => {
     const cart = useSelector(state => state)
-    const dispatch = useDispatch
+    const dispatch = useDispatch()
     const [ cupomField, setCupomField] = useState('')
 
     const handleChange = () => event => {
@@ -17,13 +18,15 @@ const Cupom = (props) => {
 
     const checkCupom = () => {
 
-        const validCupom = cart.cupoms.filter( c => c.key === cupomField)
+        const enabledCupom = cart.cupoms.filter( c => c.key === cupomField)
 
-        console.log('cupom', validCupom)
+        if( enabledCupom.length > 0){
+            dispatch({type: CART_CUPOM_ADD , enabledCupom: enabledCupom})
+        } else {
+            dispatch({type: CART_CUPOM_SUB})
 
+        }
     }
-
-    console.log('cupom', cupomField)
 
     return(
         <List>
