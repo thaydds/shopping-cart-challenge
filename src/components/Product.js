@@ -16,13 +16,13 @@ const Product = (props) => {
     return(
         <ListItem>
             <ListItemIcon>
-                <IconButton onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_ADD, productName: product.name})} edge="end" aria-label="add">
+                <IconButton data-testid="add-amount" onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_ADD, productName: product.name})} edge="end" aria-label="add">
                     <Add />
                 </IconButton>
             </ListItemIcon> 
-            <Typography variant="body2">{product.amount}</Typography>
+            <Typography data-testid="product-amount" variant="body2">{product.amount}</Typography>
             <ListItemIcon>
-                <IconButton onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_SUB, productName: product.name})} edge="end" aria-label="delete">
+                <IconButton data-testid="sub-amount" onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_SUB, productName: product.name})} edge="end" aria-label="delete">
                     <Remove />
                 </IconButton>
             </ListItemIcon>       
