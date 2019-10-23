@@ -12,15 +12,15 @@ const CartSessions = (props) => {
         <List>
             <ListItem alignItems='center'>
                 <ListItemText primary={'Subtotal'} />
-                <Typography variant="body2">{subtotal}</Typography>
+                <Typography data-testid='subtotal' variant="body2">{subtotal}</Typography>
                 </ListItem>
                 <ListItem alignItems='center'>
                 <ListItemText primary={'Shipping'} />
-                <Typography variant="body2">{ shipping }</Typography>
+                <Typography data-testid='shipping' variant="body2">{ shipping }</Typography>
                 </ListItem>
                 <ListItem alignItems='center'>
-                <ListItemText primary={'Total'} />
-                <Typography variant="body2">{total}</Typography>
+                <ListItemText  primary={'Total'} />
+                <Typography data-testid='total' variant="body2">{total}</Typography>
             </ListItem>
         </List>
     )
@@ -28,9 +28,10 @@ const CartSessions = (props) => {
 
 export default CartSessions
 
-CartSessions.proptypes = {
-    subtotal: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired,
-    shipping: PropTypes.number.isRequired
 
-}
+CartSessions.propTypes = {
+    total: PropTypes.number,
+    subtotal: PropTypes.number,
+    shipping: PropTypes.number,
+  }
+
