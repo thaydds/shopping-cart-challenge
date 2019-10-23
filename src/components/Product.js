@@ -8,7 +8,7 @@ import Remove from "@material-ui/icons/Remove"
 import Typography from '@material-ui/core/Typography'
 import PropTypes from 'prop-types'
 import {useDispatch} from 'react-redux'
-import {CART_PRODUCT_AMOUNT_ADD, CART_PRODUCT_AMOUNT_SUB} from '../actions'
+import { cartProductAmoundAdd, cartProductAmoundSub } from '../actions'
 
 const Product = (props) => {
     const { product } = props
@@ -16,13 +16,13 @@ const Product = (props) => {
     return(
         <ListItem>
             <ListItemIcon>
-                <IconButton color="primary" data-testid="add-amount" onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_ADD, productName: product.name})} edge="end" aria-label="add">
+                <IconButton color="primary" data-testid="add-amount" onClick={() => dispatch(cartProductAmoundAdd(product.name))} edge="end" aria-label="add">
                     <Add />
                 </IconButton>
             </ListItemIcon> 
             <Typography data-testid="product-amount" variant="body2">{`${product.amount} kg`}</Typography>
             <ListItemIcon>
-                <IconButton color="secondary" data-testid="sub-amount" onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_SUB, productName: product.name})} edge="end" aria-label="delete">
+                <IconButton color="secondary" data-testid="sub-amount" onClick={() => dispatch(cartProductAmoundSub(product.name))} edge="end" aria-label="delete">
                     <Remove />
                 </IconButton>
             </ListItemIcon>       

@@ -8,7 +8,7 @@ import Cupom from './components/Cupom'
 import PurchaseButton from './components/PurchaseButton'
 import { useStyles } from './appStyle'
 import { useSelector, useDispatch } from 'react-redux'
-import { CART_SUBTOTAL_CALC, CART_SHIPPING_CALC, cartTotalCalc } from './actions'
+import { cartTotalCalc, cartSubtotalCalc, cartShippingCalc } from './actions'
 import './App.css';
  
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		dispatch({type: CART_SUBTOTAL_CALC})
+		dispatch(cartSubtotalCalc())
 	}, [cart.products, dispatch])
 
 	useEffect(() => {
@@ -26,17 +26,7 @@ export default function App() {
 	}, [cart.subtotal, cart.shipping, cart.cupom, dispatch])
 
 	useEffect(() => {
-		const kg = cart.products.reduce((sum, product) => {
-			return sum + product.amount
-		}, 0)
-		let shippingPrice = kg === 0 ?  0 : 30	
-		if(kg > 10){
-			shippingPrice += (Math.floor((kg/5) - 2) * 7)
-		}
-		if(cart.cupom.length > 0 && cart.cupom[0].type === 'Free Shipping'){
-			shippingPrice = 0
-		} 
-		dispatch({ type: CART_SHIPPING_CALC, shippingPrice: shippingPrice})
+		dispatch(cartShippingCalc(cart.products, cart.cupom))
 	}, [cart.products, dispatch, cart.cupom])
 
 	return (

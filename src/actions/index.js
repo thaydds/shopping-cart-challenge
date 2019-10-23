@@ -13,30 +13,12 @@ export const CART_CUPOM_SUB = 'CART_CUPOM_SUB'
 
 // actions functions
 
-export const cartProductAmoundAdd = (products, productName) => {
-    const productClone = [...products.map( product => {
-        return Object.assign({}, product )
-    })]
-    const product = productClone.filter( product => product.name === productName)
-    product.amount += 1
-    return {
-        type: CART_PRODUCT_AMOUNT_ADD,
-        products: productClone
-    } 
+export const cartProductAmoundAdd = ( productName ) => {
+    return { type: CART_PRODUCT_AMOUNT_ADD, productName}
 }
 
-export const cartProductAmoundSub = (products, productName) => {
-    
-    const productClone = [...products.map( product => {
-        return Object.assign({}, product )
-    })]
-    const product = productClone.filter( product => product.name === productName)
-    product.amount -= 1
-
-    return {
-        type: CART_PRODUCT_AMOUNT_ADD,
-        products: productClone
-    } 
+export const cartProductAmoundSub = ( productName ) => {
+    return { type: CART_PRODUCT_AMOUNT_SUB, productName}
 }
 
 export const cartSubtotalCalc = () => {return {type: CART_SUBTOTAL_CALC}}
