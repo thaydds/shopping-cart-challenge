@@ -40,31 +40,4 @@ describe('Cupom component', () => {
             }]
         })
     })
-
-    it('should to dispatch a CART_CUPOM_SUB action when cupom input is not valid', async() =>{
-        useSelector.mockImplementation( state => state (initialState))
-        
-        const dispatch = jest.fn()
-        useDispatch.mockReturnValue(dispatch)
-        
-        const {getByTestId, debug} = render(<Cupom />)
-
-        const inputNode = await waitForElement(() => getByTestId('input-cupom'))
-        const buttonNode = await waitForElement(() => getByTestId('add-cupom'))
-
-        const cupomName = 'foo'
-
-        fireEvent.change(
-            inputNode,
-            { target: { value: cupomName }}
-        )
-
-        expect(inputNode.value).toEqual(cupomName)
-
-        fireEvent.click(buttonNode)
-
-        expect(dispatch).toHaveBeenCalledWith({
-            type: CART_CUPOM_SUB, 
-        })
-    })
 })

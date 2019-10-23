@@ -13,13 +13,11 @@ const Cupom = () => {
     const [ cupomField, setCupomField] = useState('')
     
     const handleChange = () =>
-     event => {
-        setCupomField(event.target.value.trim());
+        event => {
+        setCupomField((event.target.value).toUpperCase().trim())
     };
 
-    const checkCupom = (teste) => {
-        console.log('teste', teste)
-
+    const checkCupom = () => {
         const enabledCupom = cart.cupoms.filter( c => c.key === cupomField)
         if( enabledCupom.length > 0){
             dispatch({type: CART_CUPOM_ADD , enabledCupom: enabledCupom})
@@ -41,7 +39,7 @@ const Cupom = () => {
                 'aria-label': 'cupom',
                 }}
             />
-            <Button data-testid='add-cupom' onClick={() => checkCupom('button')} variant="outlined" color="primary" >
+            <Button data-testid='add-cupom' onClick={() => checkCupom()} variant="outlined" color="primary" >
                 Aplly
             </Button>
             </ListItem>
