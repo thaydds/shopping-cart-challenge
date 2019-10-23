@@ -25,7 +25,7 @@ const CartSessions = (props) => {
                 <ListItem alignItems='center'>
                 <ListItemText  primary={'Total'} />
                 { cupom ? cupom.type ==='Fixed' ? <DiscountFlag label={`Fixed Cupom -${cupom.effect}%`} /> : null : null }
-                <Typography data-testid='total' variant="body2">{`${total} $`}</Typography>
+                <Typography data-testid='total' variant="subtitle2">{`${total} $`}</Typography>
             </ListItem>
         </List>
     )

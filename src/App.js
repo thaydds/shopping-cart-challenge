@@ -22,7 +22,13 @@ export default function App() {
 	}, [cart.products, dispatch])
 
 	useEffect(() => {
-		const discount = cart.cupom.length > 0 && cart.cupom[0].type === 'Fixed' ? cart.cupom[0].effect : 0
+		let discount = 0
+		if(cart.cupom.length > 0 && cart.cupom[0].type === 'Fixed'){
+			discount = cart.cupom[0].effect
+		} else if(cart.cupom.length > 0 && cart.cupom[0].type === 'Percentual'){
+			discount = cart.cupom[0].effect * cart.subtotal
+		}
+	
 		let total = (cart.subtotal + cart.shipping) - discount
 		if(total < 0){
 			total = 0
@@ -38,8 +44,11 @@ export default function App() {
 		if(kg > 10){
 			shippingPrice += (Math.floor((kg/5) - 2) * 7)
 		}
+		if(cart.cupom.length > 0 && cart.cupom[0].type === 'Free Shipping'){
+			shippingPrice = 0
+		} 
 		dispatch({ type: CART_SHIPPING_CALC, shippingPrice: shippingPrice})
-	}, [cart.products, dispatch])
+	}, [cart.products, dispatch, cart.cupom])
 
 	return (
 		<main className={classes.layout}>
