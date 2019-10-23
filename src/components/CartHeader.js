@@ -5,10 +5,10 @@ import Typography from '@material-ui/core/Typography';
 const CartHeader = () => {
     return(
     <React.Fragment>
-        <Typography component="h1" variant="h4" align="center">
+        <Typography data-testid='cart-header' component="h1" variant="h4" align="center">
         Shopping Cart
         </Typography>
-        <Typography variant="h6" gutterBottom>
+        <Typography data-testid='cart-subheader' variant="h6" gutterBottom>
         Order Summary
         </Typography>
     </React.Fragment>
