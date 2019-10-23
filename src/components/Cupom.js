@@ -5,7 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Input from "@material-ui/core/Input"
 import Button from "@material-ui/core/Button"
 import {useDispatch, useSelector} from 'react-redux'
-import {CART_CUPOM_ADD, CART_CUPOM_SUB} from '../actions'
+import {CART_CUPOM_ADD} from '../actions'
 
 const Cupom = () => {
     const cart = useSelector(state => state)
@@ -21,10 +21,7 @@ const Cupom = () => {
         const enabledCupom = cart.cupoms.filter( c => c.key === cupomField)
         if( enabledCupom.length > 0){
             dispatch({type: CART_CUPOM_ADD , enabledCupom: enabledCupom})
-        } else {
-            dispatch({type: CART_CUPOM_SUB})
-
-        }
+        } 
     }
 
     return(

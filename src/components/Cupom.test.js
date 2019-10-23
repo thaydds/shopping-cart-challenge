@@ -3,7 +3,7 @@ import { render, fireEvent, waitForElement } from '@testing-library/react'
 import Cupom from './Cupom'
 import { useSelector, useDispatch } from 'react-redux'
 import { initialState } from '../store'
-import { CART_CUPOM_ADD, CART_CUPOM_SUB } from '../actions'
+import { CART_CUPOM_ADD } from '../actions'
 
 jest.mock('react-redux')
 
@@ -14,7 +14,7 @@ describe('Cupom component', () => {
         const dispatch = jest.fn()
         useDispatch.mockReturnValue(dispatch)
         
-        const {getByTestId, debug} = render(<Cupom />)
+        const {getByTestId} = render(<Cupom />)
 
         const inputNode = await waitForElement(() => getByTestId('input-cupom'))
         const buttonNode = await waitForElement(() => getByTestId('add-cupom'))

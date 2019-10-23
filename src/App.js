@@ -47,7 +47,7 @@ export default function App() {
 			<CartHeader />
 			<ProductList  products={cart.products}/>
 			<Divider/>
-			<CartSessions subtotal={cart.subtotal} total={cart.total} shipping={cart.shipping} />
+			<CartSessions subtotal={cart.subtotal} total={cart.total} shipping={cart.shipping} cupom={cart.cupom[0]} />
 			<Divider/> 
 			<Cupom />
 			<Divider />
