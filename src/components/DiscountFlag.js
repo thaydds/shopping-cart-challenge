@@ -19,7 +19,7 @@ const DiscountFlag = (props) => {
             icon={<Money />}
             label={props.label}
             onDelete={handleDelete}
-            color="primary"
+            color="secondary"
         />
     )
 }

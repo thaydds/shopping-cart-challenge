@@ -23,8 +23,8 @@ const CartSessions = (props) => {
                 <Typography data-testid='shipping' variant="body2">{ `${shipping} $` }</Typography>
                 </ListItem>
                 <ListItem alignItems='center'>
-                <ListItemText  primary={'Total'} />
-                { cupom ? cupom.type ==='Fixed' ? <DiscountFlag label={`Fixed Cupom -${cupom.effect}%`} /> : null : null }
+                <ListItemText primary={'Total'} />
+                { cupom ? cupom.type ==='Fixed' ? <DiscountFlag label={`Fixed Cupom -${cupom.effect}$`} /> : null : null }
                 <Typography data-testid='total' variant="subtitle2">{`${total} $`}</Typography>
             </ListItem>
         </List>

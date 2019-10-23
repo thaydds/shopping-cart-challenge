@@ -34,7 +34,7 @@ describe('Cupom component', () => {
             type: CART_CUPOM_ADD, 
             enabledCupom: [{
                 active: false,
-                effect: 10,
+                effect: 100,
                 key: 'FOO',
                 type: 'Fixed'
             }]

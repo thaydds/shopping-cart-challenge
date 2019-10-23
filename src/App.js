@@ -8,7 +8,7 @@ import Cupom from './components/Cupom'
 import PurchaseButton from './components/PurchaseButton'
 import { useStyles } from './appStyle'
 import { useSelector, useDispatch } from 'react-redux'
-import { CART_SUBTOTAL_CALC, CART_TOTAL_CALC, CART_SHIPPING_CALC } from './actions'
+import { CART_SUBTOTAL_CALC, CART_SHIPPING_CALC, cartTotalCalc } from './actions'
 import './App.css';
  
 export default function App() {
@@ -22,18 +22,7 @@ export default function App() {
 	}, [cart.products, dispatch])
 
 	useEffect(() => {
-		let discount = 0
-		if(cart.cupom.length > 0 && cart.cupom[0].type === 'Fixed'){
-			discount = cart.cupom[0].effect
-		} else if(cart.cupom.length > 0 && cart.cupom[0].type === 'Percentual'){
-			discount = cart.cupom[0].effect * cart.subtotal
-		}
-	
-		let total = (cart.subtotal + cart.shipping) - discount
-		if(total < 0){
-			total = 0
-		}
-		dispatch({type: CART_TOTAL_CALC, total: total})
+		dispatch(cartTotalCalc(cart.subtotal, cart.shipping, cart.cupom))
 	}, [cart.subtotal, cart.shipping, cart.cupom, dispatch])
 
 	useEffect(() => {

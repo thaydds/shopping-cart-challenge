@@ -15,7 +15,7 @@ const products = [
 
 const enabledCupons = [
     {key: 'A', type: 'Percentual', effect: 0.5, active: false},
-    {key: 'FOO', type: 'Fixed', effect: 10, active: false},
+    {key: 'FOO', type: 'Fixed', effect: 100, active: false},
     {key: 'C', type: 'Free Shipping', effect: 0, active: false}
 ]
 
