@@ -27,7 +27,7 @@ describe('Product component', () => {
     })
 
     it('should to dispatch a CART_PRODUCT_AMOUNT_ADD/CART_PRODUCT_AMOUNT_SUB action', () =>{
-        useSelector.mockImplementation( cb => cb ({initialState}))
+        useSelector.mockImplementation( state => state (initialState))
         
         const dispatch = jest.fn()
 

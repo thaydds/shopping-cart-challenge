@@ -11,15 +11,16 @@ const Cupom = () => {
     const cart = useSelector(state => state)
     const dispatch = useDispatch()
     const [ cupomField, setCupomField] = useState('')
-
-    const handleChange = () => event => {
-        setCupomField(event.target.value);
+    
+    const handleChange = () =>
+     event => {
+        setCupomField(event.target.value.trim());
     };
 
-    const checkCupom = () => {
+    const checkCupom = (teste) => {
+        console.log('teste', teste)
 
         const enabledCupom = cart.cupoms.filter( c => c.key === cupomField)
-
         if( enabledCupom.length > 0){
             dispatch({type: CART_CUPOM_ADD , enabledCupom: enabledCupom})
         } else {
@@ -35,12 +36,12 @@ const Cupom = () => {
             <Input
                 value={cupomField}
                 onChange={handleChange()}
-                onClick={() => checkCupom()}
                 inputProps={{
-                'aria-label': 'description',
+                "data-testid": "input-cupom",
+                'aria-label': 'cupom',
                 }}
             />
-            <Button onClick={() => checkCupom()} variant="outlined" color="primary" >
+            <Button data-testid='add-cupom' onClick={() => checkCupom('button')} variant="outlined" color="primary" >
                 Aplly
             </Button>
             </ListItem>
