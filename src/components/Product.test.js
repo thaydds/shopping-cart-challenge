@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import {CART_PRODUCT_AMOUNT_ADD, CART_PRODUCT_AMOUNT_SUB} from '../actions'
 import { initialState } from '../store'
 
-
 const product = {
     name: 'Banana', 
     desc: 'the best of the world', 

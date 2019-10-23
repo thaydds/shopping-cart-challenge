@@ -7,7 +7,7 @@ import Product from './Product'
 const ProductList = (props) => {
     const { products } = props
     return(
-        <List disablePadding>
+        <List data-testid='product-list' disablePadding>
             {products.map(product => 
                <Product key={product.name} product={product} />
             )}
