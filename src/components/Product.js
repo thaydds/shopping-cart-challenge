@@ -16,18 +16,18 @@ const Product = (props) => {
     return(
         <ListItem>
             <ListItemIcon>
-                <IconButton data-testid="add-amount" onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_ADD, productName: product.name})} edge="end" aria-label="add">
+                <IconButton color="primary" data-testid="add-amount" onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_ADD, productName: product.name})} edge="end" aria-label="add">
                     <Add />
                 </IconButton>
             </ListItemIcon> 
-            <Typography data-testid="product-amount" variant="body2">{product.amount}</Typography>
+            <Typography data-testid="product-amount" variant="body2">{`${product.amount} kg`}</Typography>
             <ListItemIcon>
-                <IconButton data-testid="sub-amount" onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_SUB, productName: product.name})} edge="end" aria-label="delete">
+                <IconButton color="secondary" data-testid="sub-amount" onClick={() => dispatch({type: CART_PRODUCT_AMOUNT_SUB, productName: product.name})} edge="end" aria-label="delete">
                     <Remove />
                 </IconButton>
             </ListItemIcon>       
-            <ListItemText data-testid="product-name" primary={product.name} />
-            <Typography data-testid="product-total-value" variant="body2">{product.price * product.amount}</Typography>
+            <ListItemText data-testid="product-name" primary={`${product.name}`} />
+            <Typography data-testid="product-total-value" variant="body2">{`${product.price * product.amount} $`}</Typography>
         </ListItem>     
     )
 }
