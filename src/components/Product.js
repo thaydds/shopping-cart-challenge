@@ -26,8 +26,8 @@ const Product = (props) => {
                     <Remove />
                 </IconButton>
             </ListItemIcon>       
-            <ListItemText primary={product.name} />
-            <Typography variant="body2">{product.price * product.amount}</Typography>
+            <ListItemText data-testid="product-name" primary={product.name} />
+            <Typography data-testid="product-total-value" variant="body2">{product.price * product.amount}</Typography>
         </ListItem>     
     )
 }
