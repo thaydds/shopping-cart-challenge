@@ -21,7 +21,16 @@ export const cartProductAmoundSub = ( productName ) => {
     return { type: CART_PRODUCT_AMOUNT_SUB, productName}
 }
 
-export const cartSubtotalCalc = () => {return {type: CART_SUBTOTAL_CALC}}
+export const cartSubtotalCalc = ( products, cupom ) => {
+    const subtotal = products.reduce((sum, product) => {
+        return sum + (product.amount * product.price)
+      }, 0)
+    let discount = 0
+    if(cupom.length > 0 && cupom[0].type === 'Percentual'){
+        discount = subtotal * cupom[0].effect 
+    }
+    return {type: CART_SUBTOTAL_CALC, subtotal: subtotal - discount}
+}
 
 export const cartShippingCalc = (products, cupom ) => {
     const kg = products.reduce((sum, product) => {
@@ -41,10 +50,7 @@ export const cartTotalCalc = (subtotal, shipping, cupom) => {
     let discount = 0
     if(cupom.length > 0 && cupom[0].type === 'Fixed'){
         discount = cupom[0].effect
-    } else if(cupom.length > 0 && cupom[0].type === 'Percentual'){
-        discount = cupom[0].effect * subtotal
     }
-
     let total = (subtotal + shipping) - discount
     if(total < 0){
         total = 0

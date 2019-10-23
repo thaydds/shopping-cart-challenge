@@ -48,9 +48,7 @@ export function cart(state = initialState, action){
                 return p
             })}
         case CART_SUBTOTAL_CALC: 
-            return {...state, subtotal: state.products.reduce((sum, product) => {
-                return sum + (product.amount * product.price)
-              }, 0)}
+            return {...state, subtotal: action.subtotal}
         case CART_TOTAL_CALC: 
             return {...state, total: action.total}
         case CART_SHIPPING_CALC: 

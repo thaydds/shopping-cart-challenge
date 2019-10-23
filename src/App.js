@@ -18,8 +18,8 @@ export default function App() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		dispatch(cartSubtotalCalc())
-	}, [cart.products, dispatch])
+		dispatch(cartSubtotalCalc(cart.products, cart.cupom))
+	}, [cart.products, cart.cupom, dispatch])
 
 	useEffect(() => {
 		dispatch(cartTotalCalc(cart.subtotal, cart.shipping, cart.cupom))
