@@ -10,15 +10,40 @@ export const CART_SHIPPING_CALC = 'CART_SHIPPING_CALC'
 export const CART_CUPOM_ADD = 'CART_CUPOM_ADD'
 export const CART_CUPOM_SUB = 'CART_CUPOM_SUB'
 
+export const CART_RESET = 'CART_RESET'
+
+
 
 // actions functions
 
-export const cartProductAmoundAdd = ( productName ) => {
-    return { type: CART_PRODUCT_AMOUNT_ADD, productName}
+export const cartProductAmoundAdd = ( productName, products ) => {
+
+    let clone = [...products.map( p => {
+        return Object.assign({}, p)
+    })]
+
+    clone.forEach( c => {
+        if(c.name === productName){
+            c.amount += 1
+        }
+    })
+
+    return { type: CART_PRODUCT_AMOUNT_ADD, products: clone}
 }
 
-export const cartProductAmoundSub = ( productName ) => {
-    return { type: CART_PRODUCT_AMOUNT_SUB, productName}
+export const cartProductAmoundSub = ( productName, products ) => {
+
+    let clone = [...products.map( p => {
+        return Object.assign({}, p)
+    })]
+
+    clone.forEach( c => {
+        if(c.name === productName){
+            c.amount -= 1
+        }
+    })
+
+    return { type: CART_PRODUCT_AMOUNT_SUB, products: clone}
 }
 
 export const cartSubtotalCalc = ( products, cupom ) => {
@@ -66,6 +91,12 @@ export const cartCupomAdd = enabledCupom => {
 
 export const cartCupomSub = () => { 
     return { type: CART_CUPOM_SUB
+    }
+}
+
+export const cartReset = () => {
+    return {
+        type: CART_RESET
     }
 }
 

@@ -1,6 +1,6 @@
 import { createStore } from 'redux'
 import {CART_PRODUCT_AMOUNT_ADD, CART_PRODUCT_AMOUNT_SUB, 
-        CART_SUBTOTAL_CALC, CART_TOTAL_CALC, 
+        CART_SUBTOTAL_CALC, CART_TOTAL_CALC, CART_RESET,
         CART_SHIPPING_CALC, CART_CUPOM_SUB, CART_CUPOM_ADD} from '../actions'
 
 const products = [
@@ -35,19 +35,9 @@ export function cart(state = initialState, action){
     //console.log('action', action)
     switch(action.type){
         case CART_PRODUCT_AMOUNT_ADD:
-            return {...state, products: state.products.map( p => {
-               if (p.name === action.productName) {
-                   p.amount += 1
-               }
-               return p
-            })}
+            return {...state, products: action.products}
         case CART_PRODUCT_AMOUNT_SUB:
-            return {...state, products: state.products.map( p => {
-                if (p.name === action.productName && p.amount > 0) {
-                    p.amount -= 1
-                }
-                return p
-            })}
+            return {...state, products: action.products}
         case CART_SUBTOTAL_CALC: 
             return {...state, subtotal: action.subtotal}
         case CART_TOTAL_CALC: 
@@ -57,7 +47,9 @@ export function cart(state = initialState, action){
         case CART_CUPOM_ADD: 
             return {...state, cupom: action.enabledCupom}
         case CART_CUPOM_SUB: 
-            return {...state, cupom: []}      
+            return {...state, cupom: []}
+        case CART_RESET:
+            return initialState             
         default:
             return state
     }

@@ -13,6 +13,8 @@ import { blue } from '@material-ui/core/colors'
 import Button from '@material-ui/core/Button'
 import DialogActions from '@material-ui/core/DialogActions'
 import IconButton from '@material-ui/core/IconButton'
+import { cartReset } from '../actions'
+import { useDispatch } from 'react-redux'
 
 const useStyles = makeStyles({
   avatar: {
@@ -23,10 +25,12 @@ const useStyles = makeStyles({
 
 const CartDialog = (props) => {
   const classes = useStyles();
-  const { onClose, selectedValue, open } = props;
+  const dispatch = useDispatch()
+  const { onClose,  open } = props
 
   const handleClose = () => {
-    onClose(selectedValue);
+    dispatch(cartReset())
+    onClose()
   };
 
   return (
