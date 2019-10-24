@@ -35,7 +35,7 @@ const CartDialog = (props) => {
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Thanks for the purchase!!</DialogTitle>
+      <DialogTitle>Thanks for the purchase!! You can find me at:</DialogTitle>
       <List>
           <ListItem button  onClick={()=> window.open("https://github.com/thaydds", "_blank")}  key={'GitHub'}>
             <ListItemAvatar>
@@ -62,7 +62,7 @@ const CartDialog = (props) => {
       </List>
       <DialogActions>
           <Button onClick={handleClose} color="primary" autoFocus>
-            Close
+            Close and reset cart
           </Button>
         </DialogActions>
     </Dialog>

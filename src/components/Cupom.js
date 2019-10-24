@@ -42,7 +42,7 @@ const Cupom = () => {
             handleClick()
         }
         else{
-            setMsg(`[ERROR]: ${cupomField} isn't a valid coupon. Try: A, C, FOO`)
+            setMsg(`[ERROR]: invalid coupon. You can try: A, C, FOO`)
             handleClick()
         }
         setCupomField('') 
