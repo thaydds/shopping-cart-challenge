@@ -38,11 +38,11 @@ const Cupom = () => {
         }else if(enabledCupom.length > 0 && enabledCupom[0].type === 'Free Shipping' && cart.subtotal >= enabledCupom[0].min){
             dispatch(cartCupomAdd(enabledCupom))
         }else if(enabledCupom.length > 0 && enabledCupom[0].type === 'Free Shipping' && cart.subtotal < enabledCupom[0].min){
-            setMsg(`[ERROR]: minimum subtotal requirement to use this coupon is ${enabledCupom[0].min}`)
+            setMsg(`[ERROR]: Minimum subtotal requirement to use this coupon is ${enabledCupom[0].min}`)
             handleClick()
         }
         else{
-            setMsg(undefined)
+            setMsg(`[ERROR]: ${cupomField} isn't a valid coupon. Try: A, C, FOO`)
             handleClick()
         }
         setCupomField('') 
