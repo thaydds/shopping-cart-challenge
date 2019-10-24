@@ -14,7 +14,7 @@ const CartSessions = (props) => {
         <List>
             <ListItem alignItems='center'>
                 <ListItemText primary={'Subtotal'} />
-                { cupom ? cupom.type ==='Percentual' ? <DiscountFlag label={`Percentual Cupom (-${cupom.effect * 100}%) of ${subtotal / cupom.effect}$`} /> : null : null }
+                { cupom ? cupom.type ==='Percentual' ? <DiscountFlag label={`Percentual Cupom (-${cupom.effect * 100}%)`} /> : null : null }
                 <Typography data-testid='subtotal' variant="body2">{`${subtotal} $`}</Typography>
                 </ListItem>
                 <ListItem alignItems='center'>
