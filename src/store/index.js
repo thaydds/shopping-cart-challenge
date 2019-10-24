@@ -14,7 +14,7 @@ const products = [
 // Free Shipping: make the shipping price become 0 when applied, and should have a minimum subtotal requirement
 
 const enabledCupons = [
-    {key: 'A', type: 'Percentual', effect: 0.5, active: false, min: 0},
+    {key: 'A', type: 'Percentual', effect: 0.3, active: false, min: 0},
     {key: 'FOO', type: 'Fixed', effect: 100, active: false, min:0},
     {key: 'C', type: 'Free Shipping', effect: 0, active: false, min: 300.5}
 ]
