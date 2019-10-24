@@ -1,5 +1,5 @@
 import React from 'react'
-import CartHeader from './CartHeader'
+import CartHeader from '../components/CartHeader'
 import { render } from '@testing-library/react'
 
 describe('CartHeader component', () =>{

@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, waitForElement, fireEvent } from "@testing-library/react"
-import Product from './Product'
+import Product from '../components/Product'
 import { useSelector, useDispatch } from 'react-redux'
 import {CART_PRODUCT_AMOUNT_ADD, CART_PRODUCT_AMOUNT_SUB} from '../actions'
 import { initialState } from '../store'

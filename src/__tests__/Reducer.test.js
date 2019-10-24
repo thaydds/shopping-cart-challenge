@@ -1,4 +1,4 @@
-import { initialState, cart } from './index'
+import { initialState, cart } from '../store'
 import * as Action from '../actions'
 
 describe('Cart reducer', () => {

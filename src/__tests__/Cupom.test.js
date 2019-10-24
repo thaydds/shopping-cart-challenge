@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent, waitForElement } from '@testing-library/react'
-import Cupom from './Cupom'
+import Cupom from '../components/Cupom'
 import { useSelector, useDispatch } from 'react-redux'
 import { initialState } from '../store'
 import { CART_CUPOM_ADD } from '../actions'

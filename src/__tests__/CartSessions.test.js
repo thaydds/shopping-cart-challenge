@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, waitForElement } from "@testing-library/react"
-import CartSessions from './CartSessions'
+import CartSessions from '../components/CartSessions'
 
 describe('CartSessions component', () => {
     it('should be able to display total/subtotal/shipping values', async() => {
