@@ -69,29 +69,57 @@ describe('Shipping Rules', () => {
     })
 })
 
-// describe('Cupom Rules', () => {
+describe('Cupom Rules', () => {
 
-//     const percentualCupom = [
-//         {key: 'A', type: 'Percentual', effect: 0.3, active: false},
-//     ]
-//     const shippingCupom = [
-//         {key: 'C', type: 'Free Shipping', effect: 0, active: false},
-//     ]
-//     const fixedCupom = [
-//         {key: 'C', type: 'Free Shipping', effect: 0, active: false},
-//     ]
+    const percentualCupom = [
+        {key: 'A', type: 'Percentual', effect: 0.3, active: false},
+    ]
+    const shippingCupom = [
+        {key: 'C', type: 'Free Shipping', effect: 0, active: false},
+    ]
+    const fixedCupom = [
+        {key: 'FOO', type: 'Fixed', effect: 100, active: false},
+    ]
 
-//     it('Percentual coupon should reduce an amount in percentage of the cost on subtotal', () => {
-//         //case when kg = 14
-//         let state = cart( initialState, Action.cartProductAmoundAdd('Banana', initialState.products))
-//         for(let loop = 0; loop < 24; loop++){
-//             state = cart( {...state}, Action.cartProductAmoundAdd('Banana', state.products))
-//         }
-//         state = cart( {...state}, Action.cartCupomAdd( state.products, state.cupom))
-//         state = cart( {...state}, Action.cartSubtotalCalc( state.products, state.cupom))
-//         state = cart( {...state}, Action.cartShippingCalc( state.products, state.cupom, state.subtotal))
+    it('Percentual coupon should reduce an amount in percentage of the cost on subtotal', () => {
+        let state = cart( initialState, Action.cartProductAmoundAdd('Banana', initialState.products))
+        for(let loop = 0; loop < 24; loop++){
+            state = cart( {...state}, Action.cartProductAmoundAdd('Banana', state.products))
+        }
+        //reduce 30% of subtotal
+        state = cart( {...state}, Action.cartCupomAdd(percentualCupom))
+        state = cart( {...state}, Action.cartSubtotalCalc( state.products, state.cupom))
+        state = cart( {...state}, Action.cartShippingCalc( state.products, state.cupom, state.subtotal))
 
-//         console.log('state', state)
-        
-//     })
-// })
+        expect(state.subtotal).toStrictEqual(70)
+    })
+
+    it('Fixed coupon should reduce over the TOTAL', () => {
+        let state = cart( initialState, Action.cartProductAmoundAdd('Banana', initialState.products))
+        for(let loop = 0; loop < 24; loop++){
+            state = cart( {...state}, Action.cartProductAmoundAdd('Banana', state.products))
+        }
+        //reduce 100% of subtotal
+        state = cart( {...state}, Action.cartCupomAdd(fixedCupom))
+        state = cart( {...state}, Action.cartSubtotalCalc( state.products, state.cupom))
+        state = cart( {...state}, Action.cartShippingCalc( state.products, state.cupom, state.subtotal))
+        state = cart( {...state}, Action.cartTotalCalc( state.subtotal, state.shipping, state.cupom))
+
+        expect(state.total).toStrictEqual(51)
+
+    })
+
+    it('Shipping coupon should make the shipping price become 0 when applied, and should have a minimum subtotal requirement', () => {
+        let state = cart( initialState, Action.cartProductAmoundAdd('Banana', initialState.products))
+        for(let loop = 0; loop < 24; loop++){
+            state = cart( {...state}, Action.cartProductAmoundAdd('Banana', state.products))
+        }
+        //when subtotal >= 300.50 $ should aplly free shipṕing
+        state = cart( {...state}, Action.cartCupomAdd(shippingCupom))
+        state = cart( {...state}, Action.cartSubtotalCalc( state.products, state.cupom))
+        state = cart( {...state}, Action.cartShippingCalc( state.products, state.cupom, state.subtotal))
+        state = cart( {...state}, Action.cartTotalCalc( state.subtotal, state.shipping, state.cupom))
+
+        expect(state.shipping).toStrictEqual(0)
+    })
+})
