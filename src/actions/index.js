@@ -58,5 +58,15 @@ export const cartTotalCalc = (subtotal, shipping, cupom) => {
     return {type: CART_TOTAL_CALC, total: total}
 }
 
+export const cartCupomAdd = enabledCupom => { 
+    return { type: CART_CUPOM_ADD, 
+            enabledCupom
+    }
+}
+
+export const cartCupomSub = () => { 
+    return { type: CART_CUPOM_SUB
+    }
+}
 
 

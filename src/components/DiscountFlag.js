@@ -2,14 +2,14 @@ import React from 'react'
 import Chip from '@material-ui/core/Chip'
 import Money from '@material-ui/icons/Money'
 import { useDispatch } from 'react-redux'
-import { CART_CUPOM_SUB } from '../actions'
+import { cartCupomSub } from '../actions'
 
 const DiscountFlag = (props) => {
 
     const dispatch = useDispatch()
 
     const handleDelete = () => {
-        dispatch({ type: CART_CUPOM_SUB })
+        dispatch(cartCupomSub())
       };
 
     return(
