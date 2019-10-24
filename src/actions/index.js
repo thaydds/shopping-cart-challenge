@@ -38,7 +38,7 @@ export const cartProductAmoundSub = ( productName, products ) => {
     })]
 
     clone.forEach( c => {
-        if(c.name === productName){
+        if(c.name === productName && c.amount > 0){
             c.amount -= 1
         }
     })
