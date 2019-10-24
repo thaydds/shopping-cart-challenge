@@ -13,6 +13,7 @@ const Cupom = () => {
     const dispatch = useDispatch()
     const [ cupomField, setCupomField] = useState('')
     const [open, setOpen] = useState(false);
+    const [ msg, setMsg ] = useState(undefined)
 
     const handleClick = () => {
         setOpen(true);
@@ -32,9 +33,16 @@ const Cupom = () => {
 
     const checkCupom = () => {
         const enabledCupom = cart.cupoms.filter( c => c.key === cupomField)
-        if( enabledCupom.length > 0){
+        if( enabledCupom.length > 0 && (enabledCupom[0].type === 'Fixed' || enabledCupom[0].type === 'Percentual')){
             dispatch(cartCupomAdd(enabledCupom))
-        }else{
+        }else if(enabledCupom.length > 0 && enabledCupom[0].type === 'Free Shipping' && cart.subtotal >= enabledCupom[0].min){
+            dispatch(cartCupomAdd(enabledCupom))
+        }else if(enabledCupom.length > 0 && enabledCupom[0].type === 'Free Shipping' && cart.subtotal < enabledCupom[0].min){
+            setMsg(`[ERROR]: minimum subtotal requirement to use this coupon is ${enabledCupom[0].min}`)
+            handleClick()
+        }
+        else{
+            setMsg(undefined)
             handleClick()
         }
         setCupomField('') 
@@ -55,7 +63,7 @@ const Cupom = () => {
             <Button data-testid='add-cupom' onClick={() => checkCupom()} variant="outlined" color="primary" >
                 Aplly
             </Button>
-            {open ? <SnackMessage handleClose={handleClose} open={open} /> : null}
+            {open ? <SnackMessage handleClose={handleClose} message={msg} open={open} /> : null}
             </ListItem>
       </List>
     )

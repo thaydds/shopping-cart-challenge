@@ -11,6 +11,8 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
+const messageDefault = "[ERROR]:Coupon not found. Try: FOO, A, C"
+
 const SnackMessage = (props) => {
   const classes = useStyles();
 
@@ -28,7 +30,7 @@ const SnackMessage = (props) => {
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        message={<span>[ERROR]:Coupon not found. Try: FOO, A, C</span>}
+        message={<span>{props.message ? props.message : messageDefault}</span>}
         action={[
           <IconButton
             key="close"

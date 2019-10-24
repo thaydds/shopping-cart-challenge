@@ -19,7 +19,7 @@ const CartSessions = (props) => {
                 </ListItem>
                 <ListItem alignItems='center'>
                 <ListItemText primary={'Shipping'} />
-                { cupom ? cupom.type ==='Free Shipping' ? <DiscountFlag label={`Free Shipping Cupom`} /> : null : null }
+                { cupom ? cupom.type ==='Free Shipping' && subtotal >= cupom.min ? <DiscountFlag label={`Free Shipping Cupom`} /> : null : null }
                 <Typography data-testid='shipping' variant="body2">{ `${shipping} $` }</Typography>
                 </ListItem>
                 <ListItem alignItems='center'>

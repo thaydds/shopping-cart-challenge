@@ -65,9 +65,12 @@ export const cartShippingCalc = (products, cupom, subtotal ) => {
     if(kg > 10){
         shippingPrice += (Math.floor((kg/5) - 2) * 7)
     }
-    if((cupom.length > 0 && cupom[0].type === 'Free Shipping') || subtotal > 400 ){
+    if( subtotal > 400 ){
         shippingPrice = 0
     } 
+    if(cupom.length > 0 && cupom[0].type === 'Free Shipping'){
+        shippingPrice = subtotal >= cupom[0].min ? 0 : shippingPrice
+    }
     return { type: CART_SHIPPING_CALC, shippingPrice: shippingPrice }
 }
 
