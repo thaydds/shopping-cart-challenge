@@ -9,6 +9,7 @@ import PurchaseButton from './components/PurchaseButton'
 import { useStyles } from './appStyle'
 import { useSelector, useDispatch } from 'react-redux'
 import { cartTotalCalc, cartSubtotalCalc, cartShippingCalc } from './actions'
+import './App.css';
  
 export default function App() {
 
