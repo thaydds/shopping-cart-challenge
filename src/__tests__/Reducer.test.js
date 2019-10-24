@@ -32,7 +32,7 @@ describe('Cart reducer', () => {
 
     it('CART_SHIPPING_CALC', () => {
     
-        let state = cart( initialState, Action.cartShippingCalc( initialState.products, initialState.cupom))
+        let state = cart( initialState, Action.cartShippingCalc( initialState.products, initialState.cupom, initialState.subtotal))
     
         expect(state.shipping).toStrictEqual(30)
         
@@ -40,7 +40,7 @@ describe('Cart reducer', () => {
 
     it('CART_TOTAL_CALC', () => {
     
-        let state = cart( initialState, Action.cartShippingCalc( initialState.products, initialState.cupom))
+        let state = cart( initialState, Action.cartShippingCalc( initialState.products, initialState.cupom, initialState.subtotal))
         state = cart( state, Action.cartSubtotalCalc( state.products, state.cupom))
         state = cart( state, Action.cartTotalCalc( state.subtotal, state.shipping, state.cupom))
 

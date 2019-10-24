@@ -26,8 +26,8 @@ export default function App() {
 	}, [cart.subtotal, cart.shipping, cart.cupom, dispatch])
 
 	useEffect(() => {
-		dispatch(cartShippingCalc(cart.products, cart.cupom))
-	}, [cart.products, dispatch, cart.cupom])
+		dispatch(cartShippingCalc(cart.products, cart.cupom, cart.subtotal))
+	}, [cart.products, dispatch, cart.cupom, cart.subtotal])
 
 	return (
 		<main className={classes.layout}>

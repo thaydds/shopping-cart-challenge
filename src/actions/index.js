@@ -32,7 +32,7 @@ export const cartSubtotalCalc = ( products, cupom ) => {
     return {type: CART_SUBTOTAL_CALC, subtotal: subtotal - discount}
 }
 
-export const cartShippingCalc = (products, cupom ) => {
+export const cartShippingCalc = (products, cupom, subtotal ) => {
     const kg = products.reduce((sum, product) => {
         return sum + product.amount
     }, 0)
@@ -40,7 +40,7 @@ export const cartShippingCalc = (products, cupom ) => {
     if(kg > 10){
         shippingPrice += (Math.floor((kg/5) - 2) * 7)
     }
-    if(cupom.length > 0 && cupom[0].type === 'Free Shipping'){
+    if((cupom.length > 0 && cupom[0].type === 'Free Shipping') || subtotal > 400 ){
         shippingPrice = 0
     } 
     return { type: CART_SHIPPING_CALC, shippingPrice: shippingPrice }
