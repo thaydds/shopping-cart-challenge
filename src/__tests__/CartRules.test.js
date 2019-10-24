@@ -72,13 +72,13 @@ describe('Shipping Rules', () => {
 describe('Cupom Rules', () => {
 
     const percentualCupom = [
-        {key: 'A', type: 'Percentual', effect: 0.3, active: false},
+        {key: 'A', type: 'Percentual', effect: 0.3, active: false, min:0},
     ]
     const shippingCupom = [
-        {key: 'C', type: 'Free Shipping', effect: 0, active: false},
+        {key: 'C', type: 'Free Shipping', effect: 0, active: false, min:300.5},
     ]
     const fixedCupom = [
-        {key: 'FOO', type: 'Fixed', effect: 100, active: false},
+        {key: 'FOO', type: 'Fixed', effect: 100, active: false, min:0},
     ]
 
     it('Percentual coupon should reduce an amount in percentage of the cost on subtotal', () => {
@@ -111,10 +111,19 @@ describe('Cupom Rules', () => {
 
     it('Shipping coupon should make the shipping price become 0 when applied, and should have a minimum subtotal requirement', () => {
         let state = cart( initialState, Action.cartProductAmoundAdd('Banana', initialState.products))
-        for(let loop = 0; loop < 24; loop++){
+        for(let loop = 0; loop < 74; loop++){
             state = cart( {...state}, Action.cartProductAmoundAdd('Banana', state.products))
         }
+        //when subtotal < 300.50 $ should not aplly free shipṕing
+        state = cart( {...state}, Action.cartCupomAdd(shippingCupom))
+        state = cart( {...state}, Action.cartSubtotalCalc( state.products, state.cupom))
+        state = cart( {...state}, Action.cartShippingCalc( state.products, state.cupom, state.subtotal))
+        state = cart( {...state}, Action.cartTotalCalc( state.subtotal, state.shipping, state.cupom))
+
+        expect(state.shipping).not.toStrictEqual(0)
+
         //when subtotal >= 300.50 $ should aplly free shipṕing
+        state = cart( {...state}, Action.cartProductAmoundAdd('Banana', state.products))
         state = cart( {...state}, Action.cartCupomAdd(shippingCupom))
         state = cart( {...state}, Action.cartSubtotalCalc( state.products, state.cupom))
         state = cart( {...state}, Action.cartShippingCalc( state.products, state.cupom, state.subtotal))

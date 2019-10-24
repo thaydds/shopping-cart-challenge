@@ -36,7 +36,8 @@ describe('Cupom component', () => {
                 active: false,
                 effect: 100,
                 key: 'FOO',
-                type: 'Fixed'
+                type: 'Fixed',
+                min: 0
             }]
         })
     })

@@ -31,7 +31,6 @@ export const initialState = {
 // cart reducer
 
 export function cart(state = initialState, action){
-    console.log('action', action)
     switch(action.type){
         case CART_PRODUCT_AMOUNT_ADD:
             return {...state, products: action.products}
