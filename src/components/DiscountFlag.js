@@ -3,6 +3,8 @@ import Chip from '@material-ui/core/Chip'
 import Money from '@material-ui/icons/Money'
 import { useDispatch } from 'react-redux'
 import { cartCupomSub } from '../actions'
+import PropTypes from 'prop-types'
+
 
 const DiscountFlag = (props) => {
 
@@ -25,3 +27,8 @@ const DiscountFlag = (props) => {
 }
 
 export default DiscountFlag
+
+
+DiscountFlag.propTypes = {
+    label: PropTypes.string,
+  }

@@ -19,10 +19,7 @@ const Cupom = () => {
         setOpen(true);
     }
 
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-        return;
-        }
+    const handleClose = () => {
         setOpen(false);
     }
     
@@ -51,7 +48,7 @@ const Cupom = () => {
     return(
         <List>
             <ListItem alignItems='center'>
-            <ListItemText primary={'Cupom'} />
+            <ListItemText primary={'Coupon'} />
             <Input
                 value={cupomField}
                 onChange={handleChange()}
