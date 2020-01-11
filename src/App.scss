@@ -1,0 +1,108 @@
+body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(66, 77, 176, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+$blue-default: #3f51b5;
+
+.header_container {
+  color: black;
+  background-color: white;
+  h1 {
+    text-align: center;
+  }
+}
+
+.cart_container {
+  background-color: white;
+  margin: 0 20%;
+  // display flex aplly for all childrens?
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    h2 {
+      text-align: center;
+    }
+  }
+  &__items {
+    ul {
+      list-style: none;
+    }
+    p:nth-of-type(1) {
+      width: 100px;
+      display: inline-block;
+      text-align: center;
+    }
+  }
+  &__calc {
+    ul {
+      list-style: none;
+      li {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+  &__purchase_buttom {
+    display: flex;
+    justify-content: center;
+    button {
+      color: white;
+      font-weight: bold;
+      padding: 10px 0;
+      text-transform: uppercase;
+      background-color: $blue-default;
+      width: 80%;
+      margin: 3%;
+      border-radius: 6px;
+    }
+  }
+}
+
+.price {
+  color: red;
+  float: right;
+  padding-right: 40px;
+}
+
+.divider {
+  border-bottom: 2px solid black;
+  margin: 3%;
+}
+
+.coupon_container {
+  &__form {
+    float: right;
+    padding-right: 40px;
+  }
+  ul {
+    list-style: none;
+    li {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+  }
+  button {
+    background-color: white;
+    color: $blue-default;
+    border: solid $blue-default 1px;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: solid black 1px;
+    padding: 10px;
+  }
+}

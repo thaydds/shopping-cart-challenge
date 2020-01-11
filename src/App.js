@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./App.css";
+import Header from "./components/Header";
+import Cart from "./components/Cart";
+import "./App.scss";
 
 export default function App() {
   const cart = useSelector(state => state);
-
   const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -19,5 +20,10 @@ export default function App() {
   // 	dispatch(cartShippingCalc(cart.products, cart.cupom, cart.subtotal))
   // }, [cart.products, dispatch, cart.cupom, cart.subtotal])
 
-  return <main></main>;
+  return (
+    <div>
+      <Header />
+      <Cart />
+    </div>
+  );
 }

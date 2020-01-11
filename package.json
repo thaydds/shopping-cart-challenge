@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.1.2",
     "@testing-library/react": "^9.3.0",
     "@types/jest": "^24.0.19",
+    "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-app-rewired": "^2.1.4",
