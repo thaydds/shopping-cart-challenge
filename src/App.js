@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import Header from "./components/Header";
 import Cart from "./components/Cart";
 import "./App.scss";
 
 export default function App() {
-  const cart = useSelector(state => state);
-  const dispatch = useDispatch();
-
   // useEffect(() => {
   // 	dispatch(cartSubtotalCalc(cart.products, cart.cupom))
   // }, [cart.products, cart.cupom, dispatch])

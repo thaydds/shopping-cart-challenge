@@ -1,7 +1,14 @@
 import { createStore } from "redux";
-// import {CART_PRODUCT_AMOUNT_ADD, CART_PRODUCT_AMOUNT_SUB,
-//         CART_SUBTOTAL_CALC, CART_TOTAL_CALC, CART_RESET,
-//         CART_SHIPPING_CALC, CART_CUPOM_SUB, CART_CUPOM_ADD} from '../actions'
+import {
+  CART_PRODUCT_AMOUNT_ADD,
+  CART_PRODUCT_AMOUNT_SUB,
+  CART_SUBTOTAL_CALC,
+  CART_TOTAL_CALC,
+  CART_RESET,
+  CART_SHIPPING_CALC,
+  CART_CUPOM_SUB,
+  CART_CUPOM_ADD
+} from "../actions";
 
 const products = [
   { name: "Apple", desc: "sweet and delicious", price: 8, amount: 0 },
@@ -32,8 +39,8 @@ export const initialState = {
 
 export function cart(state = initialState, action) {
   switch (action.type) {
-    // case CART_PRODUCT_AMOUNT_ADD:
-    //     return {...state, products: action.products}
+    case CART_PRODUCT_AMOUNT_ADD:
+      return { ...state, products: action.products };
     // case CART_PRODUCT_AMOUNT_SUB:
     //     return {...state, products: action.products}
     // case CART_SUBTOTAL_CALC:
