@@ -41,20 +41,20 @@ export function cart(state = initialState, action) {
   switch (action.type) {
     case CART_PRODUCT_AMOUNT_ADD:
       return { ...state, products: action.products };
-    // case CART_PRODUCT_AMOUNT_SUB:
-    //     return {...state, products: action.products}
-    // case CART_SUBTOTAL_CALC:
-    //     return {...state, subtotal: action.subtotal}
-    // case CART_TOTAL_CALC:
-    //     return {...state, total: action.total}
-    // case CART_SHIPPING_CALC:
-    //     return {...state, shipping: action.shippingPrice}
-    // case CART_CUPOM_ADD:
-    //     return {...state, cupom: action.enabledCupom}
-    // case CART_CUPOM_SUB:
-    //     return {...state, cupom: []}
-    // case CART_RESET:
-    //     return initialState
+    case CART_PRODUCT_AMOUNT_SUB:
+      return { ...state, products: action.products };
+    case CART_SUBTOTAL_CALC:
+      return { ...state, subtotal: action.subtotal };
+    case CART_TOTAL_CALC:
+      return { ...state, total: action.total };
+    case CART_SHIPPING_CALC:
+      return { ...state, shipping: action.shippingPrice };
+    case CART_CUPOM_ADD:
+      return { ...state, cupom: action.enabledCupom };
+    case CART_CUPOM_SUB:
+      return { ...state, cupom: [] };
+    case CART_RESET:
+      return initialState;
     default:
       return state;
   }
