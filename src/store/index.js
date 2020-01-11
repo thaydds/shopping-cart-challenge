@@ -50,7 +50,7 @@ export function cart(state = initialState, action) {
     case CART_SHIPPING_CALC:
       return { ...state, shipping: action.shippingPrice };
     case CART_COUPON_ADD:
-      return { ...state, coupon: action.enabledCupom };
+      return { ...state, coupon: action.enabledCoupon };
     case CART_COUPON_SUB:
       return { ...state, coupon: [] };
     case CART_RESET:

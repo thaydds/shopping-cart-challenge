@@ -20,11 +20,14 @@ $blue-default: #3f51b5;
 
 .cart_container {
   background-color: white;
-  margin: 0 20%;
-  // display flex aplly for all childrens?
+  margin: 0 30%;
+  @media (max-width: 750px) {
+    margin: auto;
+    margin: 0 20%;
+  }
+  // display flex ally for all childrens?
   display: flex;
   flex-direction: column;
-
   &__header {
     h2 {
       text-align: center;
@@ -121,5 +124,6 @@ $blue-default: #3f51b5;
     border-left: none;
     border-bottom: solid black 1px;
     padding: 10px;
+    text-transform: uppercase;
   }
 }

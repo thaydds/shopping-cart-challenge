@@ -32,6 +32,7 @@ export const cartProductAmoundSub = (productName, products) => {
 };
 
 export const cartSubtotalCalc = (products, coupon) => {
+  console.log("coupon", coupon);
   const subtotal = products.reduce((sum, product) => {
     return sum + product.amount * product.price;
   }, 0);
@@ -69,4 +70,19 @@ export const cartTotalCalc = (subtotal, shipping, coupon) => {
     total = 0;
   }
   return { type: CART_TOTAL_CALC, total: total };
+};
+
+export const cartCouponAdd = enabledCoupon => {
+  console.log("enabled", enabledCoupon);
+  return { type: CART_COUPON_ADD, enabledCoupon };
+};
+
+export const cartCouponSub = () => {
+  return { type: CART_COUPON_SUB };
+};
+
+export const cartReset = () => {
+  return {
+    type: CART_RESET
+  };
 };
