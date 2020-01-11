@@ -6,8 +6,8 @@ export const CART_SUBTOTAL_CALC = "CART_SUBTOTAL_CALC";
 export const CART_TOTAL_CALC = "CART_TOTAL_CALC";
 export const CART_SHIPPING_CALC = "CART_SHIPPING_CALC";
 
-export const CART_CUPOM_ADD = "CART_CUPOM_ADD";
-export const CART_CUPOM_SUB = "CART_CUPOM_SUB";
+export const CART_COUPON_ADD = "CART_COUPON_ADD";
+export const CART_COUPON_SUB = "CART_COUPON_SUB";
 
 export const CART_RESET = "CART_RESET";
 
@@ -31,18 +31,18 @@ export const cartProductAmoundSub = (productName, products) => {
   return { type: CART_PRODUCT_AMOUNT_SUB, products: newProducts };
 };
 
-export const cartSubtotalCalc = (products, cupom) => {
+export const cartSubtotalCalc = (products, coupon) => {
   const subtotal = products.reduce((sum, product) => {
     return sum + product.amount * product.price;
   }, 0);
   let discount = 0;
-  if (cupom.length > 0 && cupom[0].type === "Percentual") {
-    discount = subtotal * cupom[0].effect;
+  if (coupon.length > 0 && coupon[0].type === "Percentual") {
+    discount = subtotal * coupon[0].effect;
   }
   return { type: CART_SUBTOTAL_CALC, subtotal: subtotal - discount };
 };
 
-export const cartShippingCalc = (products, cupom, subtotal) => {
+export const cartShippingCalc = (products, coupon, subtotal) => {
   const kg = products.reduce((sum, product) => {
     return sum + product.amount;
   }, 0);
@@ -53,16 +53,16 @@ export const cartShippingCalc = (products, cupom, subtotal) => {
   if (subtotal > 400) {
     shippingPrice = 0;
   }
-  if (cupom.length > 0 && cupom[0].type === "Free Shipping") {
-    shippingPrice = subtotal >= cupom[0].min ? 0 : shippingPrice;
+  if (coupon.length > 0 && coupon[0].type === "Free Shipping") {
+    shippingPrice = subtotal >= coupon[0].min ? 0 : shippingPrice;
   }
   return { type: CART_SHIPPING_CALC, shippingPrice: shippingPrice };
 };
 
-export const cartTotalCalc = (subtotal, shipping, cupom) => {
+export const cartTotalCalc = (subtotal, shipping, coupon) => {
   let discount = 0;
-  if (cupom.length > 0 && cupom[0].type === "Fixed") {
-    discount = cupom[0].effect;
+  if (coupon.length > 0 && coupon[0].type === "Fixed") {
+    discount = coupon[0].effect;
   }
   let total = subtotal + shipping - discount;
   if (total < 0) {

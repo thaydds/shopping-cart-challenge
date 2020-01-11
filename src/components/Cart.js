@@ -11,14 +11,14 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(cartSubtotalCalc(cart.products, cart.cupom));
-  }, [cart.products, cart.cupom, dispatch]);
+    dispatch(cartSubtotalCalc(cart.products, cart.coupon));
+  }, [cart.products, cart.coupon, dispatch]);
   useEffect(() => {
-    dispatch(cartTotalCalc(cart.subtotal, cart.shipping, cart.cupom));
-  }, [cart.subtotal, cart.shipping, cart.cupom, dispatch]);
+    dispatch(cartTotalCalc(cart.subtotal, cart.shipping, cart.coupon));
+  }, [cart.subtotal, cart.shipping, cart.coupon, dispatch]);
   useEffect(() => {
-    dispatch(cartShippingCalc(cart.products, cart.cupom, cart.subtotal));
-  }, [cart.products, dispatch, cart.cupom, cart.subtotal]);
+    dispatch(cartShippingCalc(cart.products, cart.coupon, cart.subtotal));
+  }, [cart.products, dispatch, cart.coupon, cart.subtotal]);
 
   return (
     <div className="cart_container">

@@ -6,8 +6,8 @@ import {
   CART_TOTAL_CALC,
   CART_RESET,
   CART_SHIPPING_CALC,
-  CART_CUPOM_SUB,
-  CART_CUPOM_ADD
+  CART_COUPON_SUB,
+  CART_COUPON_ADD
 } from "../actions";
 
 const products = [
@@ -20,7 +20,7 @@ const products = [
 // Fixed coupon: are coupons with fixed amounts that should reduce over the TOTAL.
 // Free Shipping: make the shipping price become 0 when applied, and should have a minimum subtotal requirement
 
-const enabledCupons = [
+const enabledCoupons = [
   { key: "A", type: "Percentual", effect: 0.3, active: false, min: 0 },
   { key: "FOO", type: "Fixed", effect: 100, active: false, min: 0 },
   { key: "C", type: "Free Shipping", effect: 0, active: false, min: 300.5 }
@@ -31,8 +31,8 @@ export const initialState = {
   shipping: 0,
   subtotal: 0,
   total: 0,
-  cupoms: enabledCupons,
-  cupom: []
+  coupons: enabledCoupons,
+  coupon: []
 };
 
 // cart reducer
@@ -49,10 +49,10 @@ export function cart(state = initialState, action) {
       return { ...state, total: action.total };
     case CART_SHIPPING_CALC:
       return { ...state, shipping: action.shippingPrice };
-    case CART_CUPOM_ADD:
-      return { ...state, cupom: action.enabledCupom };
-    case CART_CUPOM_SUB:
-      return { ...state, cupom: [] };
+    case CART_COUPON_ADD:
+      return { ...state, coupon: action.enabledCupom };
+    case CART_COUPON_SUB:
+      return { ...state, coupon: [] };
     case CART_RESET:
       return initialState;
     default:
