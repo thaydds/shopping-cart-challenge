@@ -19,5 +19,5 @@ export default function App() {
   // 	dispatch(cartShippingCalc(cart.products, cart.cupom, cart.subtotal))
   // }, [cart.products, dispatch, cart.cupom, cart.subtotal])
 
-  return <main className={classes.layout}></main>;
+  return <main></main>;
 }
