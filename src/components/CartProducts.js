@@ -13,14 +13,22 @@ const CartProducts = ({ products }) => {
   };
   return (
     <div className="cart_container__items">
-      <ul>
+      <ul data-testid="product-list">
         {products.map(({ name, amount, price }) => (
           <li key={name}>
-            <button onClick={() => addAmount(name)} className="add_buttom">
+            <button
+              data-testid="add-amount"
+              onClick={() => addAmount(name)}
+              className="add_buttom"
+            >
               +
             </button>
             <p>{name}</p>
-            <button onClick={() => subAmount(name)} className="sub_buttom">
+            <button
+              data-testid="sub-amount"
+              onClick={() => subAmount(name)}
+              className="sub_buttom"
+            >
               -
             </button>
             <p className="cart_container__items price">{`${amount * price}`}</p>
