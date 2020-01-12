@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartCouponAdd, cartCouponSub } from "../actions";
+import { cartCouponAdd } from "../actions";
 
 const CartCoupon = () => {
   const [query, setQuery] = useState("");
@@ -11,7 +11,6 @@ const CartCoupon = () => {
     checkCoupom();
   };
   const checkCoupom = () => {
-    console.log("query", query);
     const enabledCoupon = cart.coupons.filter(c => c.key === query);
     if (
       enabledCoupon.length > 0 &&

@@ -20,8 +20,6 @@ const Cart = () => {
     dispatch(cartShippingCalc(cart.products, cart.coupon, cart.subtotal));
   }, [cart.products, dispatch, cart.coupon, cart.subtotal]);
 
-  console.log(cart);
-
   return (
     <div className="cart_container">
       <div className="cart_container__header">
@@ -33,6 +31,7 @@ const Cart = () => {
         total={cart.total}
         subtotal={cart.subtotal}
         shipping={cart.shipping}
+        coupon={cart.coupon[0]}
       />
       <Divider />
       <CartCoupon />
