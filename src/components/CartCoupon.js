@@ -4,6 +4,7 @@ import { cartCouponAdd } from "../actions";
 
 const CartCoupon = () => {
   const [query, setQuery] = useState("");
+  const [error, setError] = useState({ status: false, message: "" });
   const cart = useSelector(state => state);
   const dispatch = useDispatch();
   const handleApplyButtom = e => {
@@ -17,23 +18,29 @@ const CartCoupon = () => {
       (enabledCoupon[0].type === "Fixed" ||
         enabledCoupon[0].type === "Percentual")
     ) {
+      setError({ ...error, status: false });
       dispatch(cartCouponAdd(enabledCoupon));
     } else if (
       enabledCoupon.length > 0 &&
       enabledCoupon[0].type === "Free Shipping" &&
       cart.subtotal >= enabledCoupon[0].min
     ) {
+      setError({ ...error, status: false });
       dispatch(cartCouponAdd(enabledCoupon));
     } else if (
       enabledCoupon.length > 0 &&
       enabledCoupon[0].type === "Free Shipping" &&
       cart.subtotal < enabledCoupon[0].min
     ) {
-      console.log(
-        `[ERROR]: Minimum subtotal requirement to use this coupon is ${enabledCoupon[0].min}`
-      );
+      setError({
+        status: true,
+        message: `Minimum subtotal requirement to use this coupon is ${enabledCoupon[0].min}`
+      });
     } else {
-      console.log(`[ERROR]: invalid coupon. You can try: A, C, FOO`);
+      setError({
+        status: true,
+        message: `Invalid coupon. You can try: A, C, FOO`
+      });
     }
     setQuery("");
   };
@@ -50,6 +57,12 @@ const CartCoupon = () => {
               type="text"
             />
             <button onClick={e => handleApplyButtom(e)}>Apply</button>
+            {error.status ? (
+              <div className="error-message">
+                {" "}
+                invalid coupon. You can try: A, C, FOO
+              </div>
+            ) : null}
           </form>
         </li>
       </ul>

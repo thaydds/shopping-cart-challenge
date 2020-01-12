@@ -113,6 +113,13 @@ $blue-default: #3f51b5;
   margin: 3%;
 }
 
+.error-message {
+  color: #cc0033;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
+}
+
 .coupon_container {
   &__form {
     float: right;
