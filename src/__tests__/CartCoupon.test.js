@@ -52,7 +52,25 @@ describe("Cupom component", () => {
     fireEvent.click(buttonNode);
 
     expect(getByTestId("error-message")).toContainElement(
-      getByText("invalid coupon. You can try: A, C, FOO")
+      getByText("Invalid coupon. You can try: A, C, FOO")
+    );
+  });
+  it("should be able to render an error message when the shipping coupon was applied without the min value ", () => {
+    const { getByText, getByTestId } = render(<CartCoupon />);
+
+    const inputNode = getByTestId("input-coupon");
+    const buttonNode = getByTestId("add-coupon");
+
+    const couponName = "C";
+    const minValue = 300.5;
+
+    fireEvent.change(inputNode, { target: { value: couponName } });
+    fireEvent.click(buttonNode);
+
+    expect(getByTestId("error-message")).toContainElement(
+      getByText(
+        `Minimum subtotal requirement to use this coupon is ${minValue}`
+      )
     );
   });
 });
