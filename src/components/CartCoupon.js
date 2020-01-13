@@ -64,8 +64,7 @@ const CartCoupon = () => {
               Apply
             </button>
             {error.status ? (
-              <div className="error-message">
-                {" "}
+              <div data-testid="error-message" className="error-message">
                 invalid coupon. You can try: A, C, FOO
               </div>
             ) : null}

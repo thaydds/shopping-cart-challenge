@@ -47,6 +47,9 @@ export function cart(state = initialState, action) {
 }
 
 // create store
-const store = createStore(cart);
+const store = createStore(
+  cart,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;

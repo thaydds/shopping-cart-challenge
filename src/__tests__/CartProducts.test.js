@@ -1,7 +1,9 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import CartProducts from "../components/CartProducts";
+import { useSelector, useDispatch } from "react-redux";
 import { initialState } from "../store";
+import { cartProductAmoundAdd, cartProductAmoundSub } from "../actions";
 
 jest.mock("react-redux");
 
@@ -22,20 +24,20 @@ describe("ProducList component", () => {
 
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByTestId } = render(
+    const { getByTestId, getAllByTestId } = render(
       <CartProducts products={initialState.products} />
     );
 
-    fireEvent.click(getByTestId("add-amount"));
+    fireEvent.click(getByTestId("add-amount-Banana"));
 
     expect(dispatch).toHaveBeenCalledWith(
-      cartProductAmoundAdd(product.name, products)
+      cartProductAmoundAdd("Banana", initialState.products)
     );
 
-    fireEvent.click(getByTestId("sub-amount"));
+    fireEvent.click(getByTestId("sub-amount-Banana"));
 
     expect(dispatch).toHaveBeenCalledWith(
-      cartProductAmoundSub(product.name, products)
+      cartProductAmoundSub("Banana", initialState.products)
     );
   });
 });

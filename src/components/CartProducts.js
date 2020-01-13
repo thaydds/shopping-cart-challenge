@@ -17,7 +17,7 @@ const CartProducts = ({ products }) => {
         {products.map(({ name, amount, price }) => (
           <li key={name}>
             <button
-              data-testid="add-amount"
+              data-testid={`add-amount-${name}`}
               onClick={() => addAmount(name)}
               className="add_buttom"
             >
@@ -25,7 +25,7 @@ const CartProducts = ({ products }) => {
             </button>
             <p>{name}</p>
             <button
-              data-testid="sub-amount"
+              data-testid={`sub-amount-${name}`}
               onClick={() => subAmount(name)}
               className="sub_buttom"
             >

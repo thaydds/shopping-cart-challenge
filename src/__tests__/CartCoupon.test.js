@@ -40,4 +40,19 @@ describe("Cupom component", () => {
       ]
     });
   });
+  it("should be able to render a div below input field when coupon doesn't exists", () => {
+    const { getByTestId, getByText } = render(<CartCoupon />);
+
+    const inputNode = getByTestId("input-coupon");
+    const buttonNode = getByTestId("add-coupon");
+
+    const couponName = "CODEMINER";
+
+    fireEvent.change(inputNode, { target: { value: couponName } });
+    fireEvent.click(buttonNode);
+
+    expect(getByTestId("error-message")).toContainElement(
+      getByText("invalid coupon. You can try: A, C, FOO")
+    );
+  });
 });
