@@ -3,10 +3,7 @@ import * as Action from "../actions";
 
 describe("Cart reducer", () => {
   it("when dipatch CART_PRODUCT_AMOUNT_ADD action should be able to add product amount", () => {
-    const state = cart(
-      initialState,
-      Action.cartProductAmoundAdd("Banana", initialState.products)
-    );
+    const state = cart(initialState, Action.cartProductAmoundAdd("Banana"));
 
     const product = state.products.filter(p => p.name === "Banana");
 

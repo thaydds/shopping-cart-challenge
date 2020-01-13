@@ -11,6 +11,7 @@ import {
   enabledCoupons,
   products
 } from "../constants";
+import { productsModifyAmount } from "./reducerHelper";
 
 export const initialState = {
   products: products,
@@ -26,9 +27,23 @@ export const initialState = {
 export function cart(state = initialState, action) {
   switch (action.type) {
     case CART_PRODUCT_AMOUNT_ADD:
-      return { ...state, products: action.products };
+      return {
+        ...state,
+        products: productsModifyAmount(
+          action.productName,
+          "ADD",
+          state.products
+        )
+      };
     case CART_PRODUCT_AMOUNT_SUB:
-      return { ...state, products: action.products };
+      return {
+        ...state,
+        products: productsModifyAmount(
+          action.productName,
+          "SUB",
+          state.products
+        )
+      };
     case CART_SUBTOTAL_CALC:
       return { ...state, subtotal: action.subtotal };
     case CART_TOTAL_CALC:

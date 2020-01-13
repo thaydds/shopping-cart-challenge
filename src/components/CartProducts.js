@@ -6,10 +6,10 @@ import { cartProductAmoundAdd, cartProductAmoundSub } from "../actions";
 const CartProducts = ({ products }) => {
   const dispatch = useDispatch();
   const addAmount = productName => {
-    dispatch(cartProductAmoundAdd(productName, products));
+    dispatch(cartProductAmoundAdd(productName));
   };
   const subAmount = productName => {
-    dispatch(cartProductAmoundSub(productName, products));
+    dispatch(cartProductAmoundSub(productName));
   };
   return (
     <div className="cart_container__items">

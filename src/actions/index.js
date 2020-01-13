@@ -9,24 +9,12 @@ import {
   CART_COUPON_ADD
 } from "../constants";
 
-export const cartProductAmoundAdd = (productName, products) => {
-  let newProducts = products.map(product => {
-    if (productName === product.name) {
-      return { ...product, amount: product.amount + 1 };
-    }
-    return product;
-  });
-  return { type: CART_PRODUCT_AMOUNT_ADD, products: newProducts };
+export const cartProductAmoundAdd = productName => {
+  return { type: CART_PRODUCT_AMOUNT_ADD, productName };
 };
 
-export const cartProductAmoundSub = (productName, products) => {
-  let newProducts = products.map(product => {
-    if (productName === product.name && product.amount > 0) {
-      return { ...product, amount: product.amount - 1 };
-    }
-    return product;
-  });
-  return { type: CART_PRODUCT_AMOUNT_SUB, products: newProducts };
+export const cartProductAmoundSub = productName => {
+  return { type: CART_PRODUCT_AMOUNT_SUB, productName };
 };
 
 export const cartSubtotalCalc = (products, coupon) => {
