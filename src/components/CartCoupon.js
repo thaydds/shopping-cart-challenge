@@ -63,11 +63,11 @@ const CartCoupon = () => {
             >
               Apply
             </button>
-            {error.status ? (
+            {error.status && (
               <div data-testid="error-message" className="error-message">
                 {error.message}
               </div>
-            ) : null}
+            )}
           </form>
         </li>
       </ul>
