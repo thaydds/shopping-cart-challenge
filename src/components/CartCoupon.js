@@ -53,10 +53,16 @@ const CartCoupon = () => {
           <form className="coupon_container__form">
             <input
               value={query}
+              data-testid="input-coupon"
               onChange={e => setQuery(e.target.value.toUpperCase().trim())}
               type="text"
             />
-            <button onClick={e => handleApplyButtom(e)}>Apply</button>
+            <button
+              data-testid="add-coupon"
+              onClick={e => handleApplyButtom(e)}
+            >
+              Apply
+            </button>
             {error.status ? (
               <div className="error-message">
                 {" "}
