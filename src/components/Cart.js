@@ -11,7 +11,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(cartSubtotalCalc(cart.products, cart.coupon));
+    dispatch(cartSubtotalCalc());
   }, [cart.products, cart.coupon, dispatch]);
   useEffect(() => {
     dispatch(cartTotalCalc(cart.subtotal, cart.shipping, cart.coupon));

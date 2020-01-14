@@ -17,15 +17,8 @@ export const cartProductAmountSub = productName => {
   return { type: CART_PRODUCT_AMOUNT_SUB, productName };
 };
 
-export const cartSubtotalCalc = (products, coupon) => {
-  const subtotal = products.reduce((sum, product) => {
-    return sum + product.amount * product.price;
-  }, 0);
-  let discount = 0;
-  if (coupon.length > 0 && coupon[0].type === "Percentual") {
-    discount = subtotal * coupon[0].effect;
-  }
-  return { type: CART_SUBTOTAL_CALC, subtotal: subtotal - discount };
+export const cartSubtotalCalc = () => {
+  return { type: CART_SUBTOTAL_CALC };
 };
 
 export const cartShippingCalc = (products, coupon, subtotal) => {

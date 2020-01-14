@@ -13,3 +13,14 @@ export const productsModifyAmount = (productName, operator, products) => {
   });
   return newProducts;
 };
+
+export const subtotalCalc = (products, coupon) => {
+  const subtotal = products.reduce((sum, product) => {
+    return sum + product.amount * product.price;
+  }, 0);
+  let discount = 0;
+  if (coupon.length > 0 && coupon[0].type === "Percentual") {
+    discount = subtotal * coupon[0].effect;
+  }
+  return subtotal - discount;
+};

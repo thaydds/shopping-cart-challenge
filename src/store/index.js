@@ -11,7 +11,7 @@ import {
   enabledCoupons,
   products
 } from "../constants";
-import { productsModifyAmount } from "./reducerHelper";
+import { productsModifyAmount, subtotalCalc } from "./reducerHelper";
 
 export const initialState = {
   products: products,
@@ -45,7 +45,7 @@ export function cart(state = initialState, action) {
         )
       };
     case CART_SUBTOTAL_CALC:
-      return { ...state, subtotal: action.subtotal };
+      return { ...state, subtotal: subtotalCalc(state.products, state.coupon) };
     case CART_TOTAL_CALC:
       return { ...state, total: action.total };
     case CART_SHIPPING_CALC:

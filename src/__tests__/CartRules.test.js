@@ -16,10 +16,7 @@ describe("Shipping Rules", () => {
     }
 
     // case when cart subtotal = 400
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
@@ -33,10 +30,7 @@ describe("Shipping Rules", () => {
       { ...state },
       Action.cartProductAmountAdd("Banana", state.products)
     );
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
@@ -52,10 +46,7 @@ describe("Shipping Rules", () => {
       initialState,
       Action.cartProductAmountAdd("Banana", initialState.products)
     );
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
@@ -70,10 +61,7 @@ describe("Shipping Rules", () => {
         Action.cartProductAmountAdd("Banana", state.products)
       );
     }
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
@@ -93,10 +81,7 @@ describe("Shipping Rules", () => {
         Action.cartProductAmountAdd("Banana", state.products)
       );
     }
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
@@ -108,10 +93,7 @@ describe("Shipping Rules", () => {
       { ...state },
       Action.cartProductAmountAdd("Banana", state.products)
     );
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
@@ -125,10 +107,7 @@ describe("Shipping Rules", () => {
         Action.cartProductAmountAdd("Banana", state.products)
       );
     }
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
@@ -161,10 +140,7 @@ describe("Coupon Rules", () => {
     }
     //reduce 30% of subtotal
     state = cart({ ...state }, Action.cartCouponAdd(percentualCoupon));
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
@@ -186,10 +162,7 @@ describe("Coupon Rules", () => {
     }
     //reduce 100% of subtotal
     state = cart({ ...state }, Action.cartCouponAdd(fixedCoupon));
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
@@ -215,10 +188,7 @@ describe("Coupon Rules", () => {
     }
     //when subtotal < 300.50 $ should not aplly free shipṕing
     state = cart({ ...state }, Action.cartCouponAdd(shippingCoupon));
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
@@ -236,10 +206,7 @@ describe("Coupon Rules", () => {
       Action.cartProductAmountAdd("Banana", state.products)
     );
     state = cart({ ...state }, Action.cartCouponAdd(shippingCoupon));
-    state = cart(
-      { ...state },
-      Action.cartSubtotalCalc(state.products, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart(
       { ...state },
       Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
