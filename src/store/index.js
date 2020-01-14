@@ -14,7 +14,8 @@ import {
 import {
   productsModifyAmount,
   subtotalCalc,
-  shippingCalc
+  shippingCalc,
+  totalCalc
 } from "./reducerHelper";
 
 export const initialState = {
@@ -49,7 +50,10 @@ export function cart(state = initialState, action) {
     case CART_SUBTOTAL_CALC:
       return { ...state, subtotal: subtotalCalc(state.products, state.coupon) };
     case CART_TOTAL_CALC:
-      return { ...state, total: action.total };
+      return {
+        ...state,
+        total: totalCalc(state.subtotal, state.shipping, state.coupon)
+      };
     case CART_SHIPPING_CALC:
       return {
         ...state,

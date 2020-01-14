@@ -116,10 +116,7 @@ describe("Coupon Rules", () => {
     state = cart({ ...state }, Action.cartCouponAdd(fixedCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart({ ...state }, Action.cartShippingCalc());
-    state = cart(
-      { ...state },
-      Action.cartTotalCalc(state.subtotal, state.shipping, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartTotalCalc());
 
     expect(state.total).toStrictEqual(51);
   });
@@ -139,10 +136,7 @@ describe("Coupon Rules", () => {
     state = cart({ ...state }, Action.cartCouponAdd(shippingCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart({ ...state }, Action.cartShippingCalc());
-    state = cart(
-      { ...state },
-      Action.cartTotalCalc(state.subtotal, state.shipping, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartTotalCalc());
 
     expect(state.shipping).not.toStrictEqual(0);
 
@@ -154,10 +148,7 @@ describe("Coupon Rules", () => {
     state = cart({ ...state }, Action.cartCouponAdd(shippingCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart({ ...state }, Action.cartShippingCalc());
-    state = cart(
-      { ...state },
-      Action.cartTotalCalc(state.subtotal, state.shipping, state.coupon)
-    );
+    state = cart({ ...state }, Action.cartTotalCalc());
 
     expect(state.shipping).toStrictEqual(0);
   });

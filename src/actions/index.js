@@ -25,15 +25,7 @@ export const cartShippingCalc = () => {
   return { type: CART_SHIPPING_CALC };
 };
 
-export const cartTotalCalc = (subtotal, shipping, coupon) => {
-  let discount = 0;
-  if (coupon.length > 0 && coupon[0].type === "Fixed") {
-    discount = coupon[0].effect;
-  }
-  let total = subtotal + shipping - discount;
-  if (total < 0) {
-    total = 0;
-  }
+export const cartTotalCalc = () => {
   return { type: CART_TOTAL_CALC, total: total };
 };
 
