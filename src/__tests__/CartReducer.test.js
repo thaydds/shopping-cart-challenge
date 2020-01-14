@@ -45,10 +45,7 @@ describe("Cart reducer", () => {
       initialState,
       Action.cartProductAmountAdd("Banana", initialState.products)
     );
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
+    state = cart({ ...state }, Action.cartShippingCalc());
     expect(state.shipping).toStrictEqual(30);
   });
 
@@ -66,10 +63,7 @@ describe("Cart reducer", () => {
       Action.cartProductAmountAdd("Apple", state.products)
     );
     state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
+    state = cart({ ...state }, Action.cartShippingCalc());
     state = cart(
       { ...state },
       Action.cartTotalCalc(state.subtotal, state.shipping, state.coupon)
@@ -113,10 +107,7 @@ describe("Cart reducer", () => {
       { ...state },
       Action.cartSubtotalCalc(state.products, state.coupon)
     );
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
+    state = cart({ ...state }, Action.cartShippingCalc());
     state = cart(
       { ...state },
       Action.cartTotalCalc(state.subtotal, state.shipping, state.coupon)

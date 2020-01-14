@@ -24,3 +24,20 @@ export const subtotalCalc = (products, coupon) => {
   }
   return subtotal - discount;
 };
+
+export const shippingCalc = (products, coupon, subtotal) => {
+  const kg = products.reduce((sum, product) => {
+    return sum + product.amount;
+  }, 0);
+  let shippingPrice = kg === 0 ? 0 : 30;
+  if (kg > 10) {
+    shippingPrice += Math.floor(kg / 5 - 2) * 7;
+  }
+  if (subtotal > 400) {
+    shippingPrice = 0;
+  }
+  if (coupon.length > 0 && coupon[0].type === "Free Shipping") {
+    shippingPrice = subtotal >= coupon[0].min ? 0 : shippingPrice;
+  }
+  return shippingPrice;
+};

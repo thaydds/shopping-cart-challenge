@@ -8,53 +8,48 @@ describe("Shipping Rules", () => {
       Action.cartProductAmountAdd("Banana", initialState.products)
     );
 
+    for (let loop = 0; loop < 100; loop++) {
+      state = cart(
+        { ...state },
+        Action.cartProductAmountAdd("Banana", state.products)
+      );
+    }
+    state = cart({ ...state }, Action.cartSubtotalCalc());
+    state = cart({ ...state }, Action.cartShippingCalc());
+
+    expect(state.shipping).toStrictEqual(0);
+    expect(state.subtotal).toStrictEqual(404);
+  });
+
+  it("For purchases equal or over R$400.00 the shipping should be > 0", () => {
+    let state = cart(
+      initialState,
+      Action.cartProductAmountAdd("Banana", initialState.products)
+    );
+
     for (let loop = 0; loop < 99; loop++) {
       state = cart(
         { ...state },
         Action.cartProductAmountAdd("Banana", state.products)
       );
     }
-
-    // case when cart subtotal = 400
     state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
+    state = cart({ ...state }, Action.cartShippingCalc());
 
     expect(state.shipping).toStrictEqual(156);
     expect(state.subtotal).toStrictEqual(400);
-
-    // case when cart subtotal > 400 apply the rule
-    state = cart(
-      { ...state },
-      Action.cartProductAmountAdd("Banana", state.products)
-    );
-    state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
-
-    expect(state.shipping).toStrictEqual(0);
-    expect(state.subtotal).toStrictEqual(404);
   });
 
   it("For purchases bellow or equal 10kg the shipping price should be $30", () => {
-    //case when kg = 1
     let state = cart(
       initialState,
       Action.cartProductAmountAdd("Banana", initialState.products)
     );
     state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
+    state = cart({ ...state }, Action.cartShippingCalc());
 
     expect(state.shipping).toStrictEqual(30);
 
-    //case when kg = 10
     for (let loop = 0; loop < 9; loop++) {
       state = cart(
         { ...state },
@@ -62,57 +57,25 @@ describe("Shipping Rules", () => {
       );
     }
     state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
+    state = cart({ ...state }, Action.cartShippingCalc());
     expect(state.shipping).toStrictEqual(30);
   });
 
   it("Each 5kg above 10kg should add $7 to the shipping price", () => {
-    //case when kg = 14
     let state = cart(
       initialState,
       Action.cartProductAmountAdd("Banana", initialState.products)
     );
-    for (let loop = 0; loop < 13; loop++) {
+    for (let loop = 0; loop < 14; loop++) {
       state = cart(
         { ...state },
         Action.cartProductAmountAdd("Banana", state.products)
       );
     }
     state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
-    expect(state.shipping).toStrictEqual(30);
+    state = cart({ ...state }, Action.cartShippingCalc());
 
-    //case when kg = 15
-    state = cart(
-      { ...state },
-      Action.cartProductAmountAdd("Banana", state.products)
-    );
-    state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
     expect(state.shipping).toStrictEqual(37);
-
-    //case when kg = 15
-    for (let loop = 0; loop < 15; loop++) {
-      state = cart(
-        { ...state },
-        Action.cartProductAmountAdd("Banana", state.products)
-      );
-    }
-    state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
-    expect(state.shipping).toStrictEqual(58);
   });
 });
 
@@ -141,10 +104,7 @@ describe("Coupon Rules", () => {
     //reduce 30% of subtotal
     state = cart({ ...state }, Action.cartCouponAdd(percentualCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
+    state = cart({ ...state }, Action.cartShippingCalc());
 
     expect(state.subtotal).toStrictEqual(70);
   });
@@ -163,10 +123,7 @@ describe("Coupon Rules", () => {
     //reduce 100% of subtotal
     state = cart({ ...state }, Action.cartCouponAdd(fixedCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
+    state = cart({ ...state }, Action.cartShippingCalc());
     state = cart(
       { ...state },
       Action.cartTotalCalc(state.subtotal, state.shipping, state.coupon)
@@ -189,10 +146,7 @@ describe("Coupon Rules", () => {
     //when subtotal < 300.50 $ should not aplly free shipṕing
     state = cart({ ...state }, Action.cartCouponAdd(shippingCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
+    state = cart({ ...state }, Action.cartShippingCalc());
     state = cart(
       { ...state },
       Action.cartTotalCalc(state.subtotal, state.shipping, state.coupon)
@@ -207,10 +161,7 @@ describe("Coupon Rules", () => {
     );
     state = cart({ ...state }, Action.cartCouponAdd(shippingCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
-    state = cart(
-      { ...state },
-      Action.cartShippingCalc(state.products, state.coupon, state.subtotal)
-    );
+    state = cart({ ...state }, Action.cartShippingCalc());
     state = cart(
       { ...state },
       Action.cartTotalCalc(state.subtotal, state.shipping, state.coupon)

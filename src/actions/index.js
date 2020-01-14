@@ -21,21 +21,8 @@ export const cartSubtotalCalc = () => {
   return { type: CART_SUBTOTAL_CALC };
 };
 
-export const cartShippingCalc = (products, coupon, subtotal) => {
-  const kg = products.reduce((sum, product) => {
-    return sum + product.amount;
-  }, 0);
-  let shippingPrice = kg === 0 ? 0 : 30;
-  if (kg > 10) {
-    shippingPrice += Math.floor(kg / 5 - 2) * 7;
-  }
-  if (subtotal > 400) {
-    shippingPrice = 0;
-  }
-  if (coupon.length > 0 && coupon[0].type === "Free Shipping") {
-    shippingPrice = subtotal >= coupon[0].min ? 0 : shippingPrice;
-  }
-  return { type: CART_SHIPPING_CALC, shippingPrice: shippingPrice };
+export const cartShippingCalc = () => {
+  return { type: CART_SHIPPING_CALC };
 };
 
 export const cartTotalCalc = (subtotal, shipping, coupon) => {
