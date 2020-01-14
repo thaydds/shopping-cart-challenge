@@ -31,7 +31,8 @@ const CartProducts = ({ products }) => {
             >
               -
             </button>
-            <p className="cart_container__items price">{`${amount * price}`}</p>
+            <p className="cart_container__items price">{`${amount *
+              price} (${amount}kg)`}</p>
           </li>
         ))}
       </ul>
