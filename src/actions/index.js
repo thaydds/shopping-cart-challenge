@@ -9,11 +9,11 @@ import {
   CART_COUPON_ADD
 } from "../constants";
 
-export const cartProductAmoundAdd = productName => {
+export const cartProductAmountAdd = productName => {
   return { type: CART_PRODUCT_AMOUNT_ADD, productName };
 };
 
-export const cartProductAmoundSub = productName => {
+export const cartProductAmountSub = productName => {
   return { type: CART_PRODUCT_AMOUNT_SUB, productName };
 };
 

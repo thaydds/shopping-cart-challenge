@@ -5,13 +5,13 @@ describe("Shipping Rules", () => {
   it("For purchases above R$400.00 the shipping should be free", () => {
     let state = cart(
       initialState,
-      Action.cartProductAmoundAdd("Banana", initialState.products)
+      Action.cartProductAmountAdd("Banana", initialState.products)
     );
 
     for (let loop = 0; loop < 99; loop++) {
       state = cart(
         { ...state },
-        Action.cartProductAmoundAdd("Banana", state.products)
+        Action.cartProductAmountAdd("Banana", state.products)
       );
     }
 
@@ -31,7 +31,7 @@ describe("Shipping Rules", () => {
     // case when cart subtotal > 400 apply the rule
     state = cart(
       { ...state },
-      Action.cartProductAmoundAdd("Banana", state.products)
+      Action.cartProductAmountAdd("Banana", state.products)
     );
     state = cart(
       { ...state },
@@ -50,7 +50,7 @@ describe("Shipping Rules", () => {
     //case when kg = 1
     let state = cart(
       initialState,
-      Action.cartProductAmoundAdd("Banana", initialState.products)
+      Action.cartProductAmountAdd("Banana", initialState.products)
     );
     state = cart(
       { ...state },
@@ -67,7 +67,7 @@ describe("Shipping Rules", () => {
     for (let loop = 0; loop < 9; loop++) {
       state = cart(
         { ...state },
-        Action.cartProductAmoundAdd("Banana", state.products)
+        Action.cartProductAmountAdd("Banana", state.products)
       );
     }
     state = cart(
@@ -85,12 +85,12 @@ describe("Shipping Rules", () => {
     //case when kg = 14
     let state = cart(
       initialState,
-      Action.cartProductAmoundAdd("Banana", initialState.products)
+      Action.cartProductAmountAdd("Banana", initialState.products)
     );
     for (let loop = 0; loop < 13; loop++) {
       state = cart(
         { ...state },
-        Action.cartProductAmoundAdd("Banana", state.products)
+        Action.cartProductAmountAdd("Banana", state.products)
       );
     }
     state = cart(
@@ -106,7 +106,7 @@ describe("Shipping Rules", () => {
     //case when kg = 15
     state = cart(
       { ...state },
-      Action.cartProductAmoundAdd("Banana", state.products)
+      Action.cartProductAmountAdd("Banana", state.products)
     );
     state = cart(
       { ...state },
@@ -122,7 +122,7 @@ describe("Shipping Rules", () => {
     for (let loop = 0; loop < 15; loop++) {
       state = cart(
         { ...state },
-        Action.cartProductAmoundAdd("Banana", state.products)
+        Action.cartProductAmountAdd("Banana", state.products)
       );
     }
     state = cart(
@@ -151,12 +151,12 @@ describe("Coupon Rules", () => {
   it("Percentual coupon should reduce an amount in percentage of the cost on subtotal", () => {
     let state = cart(
       initialState,
-      Action.cartProductAmoundAdd("Banana", initialState.products)
+      Action.cartProductAmountAdd("Banana", initialState.products)
     );
     for (let loop = 0; loop < 24; loop++) {
       state = cart(
         { ...state },
-        Action.cartProductAmoundAdd("Banana", state.products)
+        Action.cartProductAmountAdd("Banana", state.products)
       );
     }
     //reduce 30% of subtotal
@@ -176,12 +176,12 @@ describe("Coupon Rules", () => {
   it("Fixed coupon should reduce over the TOTAL", () => {
     let state = cart(
       initialState,
-      Action.cartProductAmoundAdd("Banana", initialState.products)
+      Action.cartProductAmountAdd("Banana", initialState.products)
     );
     for (let loop = 0; loop < 24; loop++) {
       state = cart(
         { ...state },
-        Action.cartProductAmoundAdd("Banana", state.products)
+        Action.cartProductAmountAdd("Banana", state.products)
       );
     }
     //reduce 100% of subtotal
@@ -205,12 +205,12 @@ describe("Coupon Rules", () => {
   it("Shipping coupon should make the shipping price become 0 when applied, and should have a minimum subtotal requirement", () => {
     let state = cart(
       initialState,
-      Action.cartProductAmoundAdd("Banana", initialState.products)
+      Action.cartProductAmountAdd("Banana", initialState.products)
     );
     for (let loop = 0; loop < 74; loop++) {
       state = cart(
         { ...state },
-        Action.cartProductAmoundAdd("Banana", state.products)
+        Action.cartProductAmountAdd("Banana", state.products)
       );
     }
     //when subtotal < 300.50 $ should not aplly free shipṕing
@@ -233,7 +233,7 @@ describe("Coupon Rules", () => {
     //when subtotal >= 300.50 $ should aplly free shipṕing
     state = cart(
       { ...state },
-      Action.cartProductAmoundAdd("Banana", state.products)
+      Action.cartProductAmountAdd("Banana", state.products)
     );
     state = cart({ ...state }, Action.cartCouponAdd(shippingCoupon));
     state = cart(
