@@ -3,10 +3,7 @@ import * as Action from "../actions";
 
 describe("Shipping Rules", () => {
   it("For purchases above R$400.00 the shipping should be free", () => {
-    let state = cart(
-      initialState,
-      Action.cartProductAmountAdd("Banana", initialState.products)
-    );
+    let state = cart(initialState, Action.cartProductAmountAdd("Banana"));
 
     for (let loop = 0; loop < 100; loop++) {
       state = cart(
@@ -22,17 +19,12 @@ describe("Shipping Rules", () => {
   });
 
   it("For purchases equal or over R$400.00 the shipping should be > 0", () => {
-    let state = cart(
-      initialState,
-      Action.cartProductAmountAdd("Banana", initialState.products)
-    );
+    let state = cart(initialState, Action.cartProductAmountAdd("Banana"));
 
     for (let loop = 0; loop < 99; loop++) {
-      state = cart(
-        { ...state },
-        Action.cartProductAmountAdd("Banana", state.products)
-      );
+      state = cart({ ...state }, Action.cartProductAmountAdd("Banana"));
     }
+
     state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart({ ...state }, Action.cartShippingCalc());
 

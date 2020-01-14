@@ -11,12 +11,10 @@ describe("Cart reducer", () => {
   });
 
   it("when dispatch CART_PRODUCT_AMOUNT_SUB action and product amount > 0 should be able to sub product amount", () => {
-    const state = cart(
-      initialState,
-      Action.cartProductAmountAdd("Banana"),
-      Action.cartProductAmountAdd("Banana"),
-      Action.cartProductAmountSub("Banana")
-    );
+    let state = cart(initialState, Action.cartProductAmountAdd("Banana"));
+
+    state = cart({ ...state }, Action.cartProductAmountAdd("Banana"));
+    state = cart({ ...state }, Action.cartProductAmountSub("Banana"));
 
     const product = state.products.filter(p => p.name === "Banana");
 
@@ -41,11 +39,12 @@ describe("Cart reducer", () => {
   });
 
   it("when dispatch CART_SHIPPING_CALC action should be able to calculate cart shipping", () => {
-    let state = cart(
-      initialState,
-      Action.cartProductAmountAdd("Banana", initialState.products)
-    );
+    let state = cart(initialState, Action.cartProductAmountAdd("Banana"));
+
+    state = cart({ ...state }, Action.cartProductAmountAdd("Banana"));
+    state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart({ ...state }, Action.cartShippingCalc());
+
     expect(state.shipping).toStrictEqual(30);
   });
 
