@@ -93,7 +93,7 @@ describe("Coupon Rules", () => {
         Action.cartProductAmountAdd("Banana", state.products)
       );
     }
-    //reduce 30% of subtotal
+
     state = cart({ ...state }, Action.cartCouponAdd(percentualCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart({ ...state }, Action.cartShippingCalc());
@@ -112,7 +112,6 @@ describe("Coupon Rules", () => {
         Action.cartProductAmountAdd("Banana", state.products)
       );
     }
-    //reduce 100% of subtotal
     state = cart({ ...state }, Action.cartCouponAdd(fixedCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart({ ...state }, Action.cartShippingCalc());
@@ -121,7 +120,7 @@ describe("Coupon Rules", () => {
     expect(state.total).toStrictEqual(51);
   });
 
-  it("Shipping coupon should make the shipping price become 0 when applied, and should have a minimum subtotal requirement", () => {
+  it("Shipping coupon should have a minimum subtotal requirement", () => {
     let state = cart(
       initialState,
       Action.cartProductAmountAdd("Banana", initialState.products)
@@ -132,19 +131,26 @@ describe("Coupon Rules", () => {
         Action.cartProductAmountAdd("Banana", state.products)
       );
     }
-    //when subtotal < 300.50 $ should not aplly free shipṕing
     state = cart({ ...state }, Action.cartCouponAdd(shippingCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart({ ...state }, Action.cartShippingCalc());
     state = cart({ ...state }, Action.cartTotalCalc());
 
     expect(state.shipping).not.toStrictEqual(0);
+  });
 
-    //when subtotal >= 300.50 $ should aplly free shipṕing
-    state = cart(
-      { ...state },
-      Action.cartProductAmountAdd("Banana", state.products)
+  it("Shipping coupon should make the shipping price become 0 when applied with a minimum subtotal requiriment", () => {
+    let state = cart(
+      initialState,
+      Action.cartProductAmountAdd("Banana", initialState.products)
     );
+    for (let loop = 0; loop < 75; loop++) {
+      state = cart(
+        { ...state },
+        Action.cartProductAmountAdd("Banana", state.products)
+      );
+    }
+
     state = cart({ ...state }, Action.cartCouponAdd(shippingCoupon));
     state = cart({ ...state }, Action.cartSubtotalCalc());
     state = cart({ ...state }, Action.cartShippingCalc());

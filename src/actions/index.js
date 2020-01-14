@@ -26,7 +26,7 @@ export const cartShippingCalc = () => {
 };
 
 export const cartTotalCalc = () => {
-  return { type: CART_TOTAL_CALC, total: total };
+  return { type: CART_TOTAL_CALC };
 };
 
 export const cartCouponAdd = enabledCoupon => {
