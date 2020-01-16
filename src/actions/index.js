@@ -7,7 +7,7 @@ import {
   CART_SHIPPING_CALC,
   CART_COUPON_SUB,
   CART_COUPON_ADD
-} from "../constants";
+} from "./constants";
 
 export const cartProductAmountAdd = productName => {
   return { type: CART_PRODUCT_AMOUNT_ADD, productName };

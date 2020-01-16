@@ -1,13 +1,13 @@
 import React from "react";
-import Header from "./components/Header";
-import Cart from "./components/Cart";
+import Header from "./components/common/header";
+import Cart from "./components/cart";
 import "./App.scss";
 
 export default function App() {
   return (
-    <div>
+    <>
       <Header />
       <Cart />
-    </div>
+    </>
   );
 }

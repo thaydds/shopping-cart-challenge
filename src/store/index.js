@@ -7,10 +7,9 @@ import {
   CART_RESET,
   CART_SHIPPING_CALC,
   CART_COUPON_SUB,
-  CART_COUPON_ADD,
-  enabledCoupons,
-  products
-} from "../constants";
+  CART_COUPON_ADD
+} from "../actions/constants";
+import { products, enabledCoupons } from "./constants";
 import {
   productsModifyAmount,
   subtotalCalc,

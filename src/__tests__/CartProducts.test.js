@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import CartProducts from "../components/CartProducts";
+import CartProducts from "../components/cart/products";
 import { useSelector, useDispatch } from "react-redux";
 import { initialState } from "../store";
 import { cartProductAmountAdd, cartProductAmountSub } from "../actions";

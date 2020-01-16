@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { cartProductAmountAdd, cartProductAmountSub } from "../actions";
+import { cartProductAmountAdd, cartProductAmountSub } from "../../../actions";
 
 const CartProducts = ({ products }) => {
   const dispatch = useDispatch();

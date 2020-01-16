@@ -1,0 +1,98 @@
+$blue-default: #3f51b5;
+
+.cart_container {
+  background-color: white;
+  margin: 0 25%;
+  @media (max-width: 750px) {
+    margin: auto;
+  }
+  // display flex ally for all childrens?
+  display: flex;
+  flex-direction: column;
+  &__header {
+    h2 {
+      text-align: center;
+    }
+  }
+  &__items {
+    ul {
+      list-style: none;
+    }
+    p:nth-of-type(1) {
+      width: 100px;
+      display: inline-block;
+      text-align: center;
+    }
+    .add_buttom {
+      background-color: white;
+      color: $blue-default;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .sub_buttom {
+      background-color: white;
+      color: red;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    @media (max-width: 400px) {
+      p:nth-of-type(1) {
+        width: auto;
+      }
+    }
+  }
+  &__calc {
+    ul {
+      list-style: none;
+      li {
+        display: flex;
+        justify-content: space-between;
+
+        span {
+          background-color: #f50057;
+          border-radius: 6px;
+          margin-right: 5px;
+          color: white;
+          padding: 3px;
+          font-size: 10px;
+
+          button {
+            font-size: 8px;
+            background-color: white;
+            color: $blue-default;
+            text-transform: uppercase;
+            border-radius: 6px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  &__purchase_buttom {
+    display: flex;
+    justify-content: center;
+    button {
+      color: white;
+      font-weight: bold;
+      padding: 10px 0;
+      text-transform: uppercase;
+      background-color: $blue-default;
+      width: 80%;
+      margin: 3%;
+      border-radius: 6px;
+    }
+  }
+}
+
+.price {
+  color: green;
+  float: right;
+  padding-right: 40px;
+}
+
+.error-message {
+  color: #cc0033;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
+}

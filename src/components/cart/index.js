@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import CartProducts from "./CartProducts";
-import CartCalc from "./CartCalcs";
-import Divider from "./Divider";
-import CartCoupon from "./CartCoupon";
-import { cartTotalCalc, cartSubtotalCalc, cartShippingCalc } from "../actions";
+import CartProducts from "./products";
+import CartCalc from "./calcs";
+import Divider from "../common/divider";
+import CartCoupon from "./coupon";
+import {
+  cartTotalCalc,
+  cartSubtotalCalc,
+  cartShippingCalc
+} from "../../actions";
+import "./cart.scss";
 
 const Cart = () => {
   const cart = useSelector(state => state);

@@ -1,0 +1,33 @@
+$blue-default: #3f51b5;
+
+.coupon_container {
+  &__form {
+    float: right;
+    padding-right: 40px;
+  }
+  ul {
+    list-style: none;
+    li {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+  }
+  button {
+    background-color: white;
+    color: $blue-default;
+    border: solid $blue-default 1px;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: solid black 1px;
+    padding: 10px;
+    text-transform: uppercase;
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { cartCouponSub } from "../actions";
+import { cartCouponSub } from "../../../actions";
 import { useDispatch } from "react-redux";
 
 const CartCalc = ({ subtotal, shipping, total, coupon }) => {
@@ -30,7 +30,8 @@ const CartCalc = ({ subtotal, shipping, total, coupon }) => {
           <p>Shipping</p>
           <p className="cart_container__items price">
             {coupon &&
-              coupon.type === "Free Shipping" && subtotal >= coupon.min && (
+              coupon.type === "Free Shipping" &&
+              subtotal >= coupon.min && (
                 <span>
                   {`Free Shipping Coupon`}{" "}
                   <button onClick={() => removeCoupon()}>x</button>
@@ -42,13 +43,12 @@ const CartCalc = ({ subtotal, shipping, total, coupon }) => {
         <li>
           <p>Total</p>
           <p className="cart_container__items price">
-            {coupon &&
-              coupon.type === "Fixed" && (
-                <span>
-                  {`Fixed Coupon -${coupon.effect}$`}{" "}
-                  <button onClick={() => removeCoupon()}>x</button>
-                </span>
-              )}
+            {coupon && coupon.type === "Fixed" && (
+              <span>
+                {`Fixed Coupon -${coupon.effect}$`}{" "}
+                <button onClick={() => removeCoupon()}>x</button>
+              </span>
+            )}
             {`${total.toFixed(2)} $`}
           </p>
         </li>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartCouponAdd } from "../actions";
+import { cartCouponAdd } from "../../../actions";
+import "./coupon.scss";
 
 const CartCoupon = () => {
   const [query, setQuery] = useState("");

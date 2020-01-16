@@ -1,9 +1,9 @@
 import React from "react";
 import { render, fireEvent, waitForElement } from "@testing-library/react";
-import CartCoupon from "../components/CartCoupon";
+import CartCoupon from "../components/cart/coupon";
 import { useSelector, useDispatch } from "react-redux";
 import { initialState } from "../store";
-import { CART_COUPON_ADD } from "../constants";
+import { CART_COUPON_ADD } from "../actions/constants";
 
 jest.mock("react-redux");
 
