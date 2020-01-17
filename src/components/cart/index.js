@@ -40,8 +40,10 @@ const Cart = () => {
       />
       <Divider />
       <CartCoupon />
-      <div className="cart_container__purchase_buttom">
-        <button>Purchase</button>
+      <div className="cart_container__purchase_button">
+        <button disabled={cart.total === 0} type="submit">
+          Purchase
+        </button>
       </div>
     </div>
   );

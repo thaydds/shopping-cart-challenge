@@ -68,7 +68,7 @@ $blue-default: #3f51b5;
       }
     }
   }
-  &__purchase_buttom {
+  &__purchase_button {
     display: flex;
     justify-content: center;
     button {
@@ -80,6 +80,9 @@ $blue-default: #3f51b5;
       width: 80%;
       margin: 3%;
       border-radius: 6px;
+    }
+    button:disabled {
+      background: #dddddd;
     }
   }
 }
@@ -94,4 +97,5 @@ $blue-default: #3f51b5;
   color: #cc0033;
   font-size: 12px;
   line-height: 15px;
+  max-width: 180px;
 }

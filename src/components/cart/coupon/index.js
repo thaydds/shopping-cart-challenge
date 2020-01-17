@@ -8,31 +8,28 @@ const CartCoupon = () => {
   const [error, setError] = useState({ status: false, message: "" });
   const cart = useSelector(state => state);
   const dispatch = useDispatch();
+  console.log(cart);
+  const enabledCoupon = cart.coupons.filter(c => c.key === query);
+  const isFixedCoupon =
+    enabledCoupon.length > 0 &&
+    (enabledCoupon[0].type === "Fixed" ||
+      enabledCoupon[0].type === "Percentual");
+  const isShippingCoupon =
+    enabledCoupon.length > 0 && enabledCoupon[0].type === "Free Shipping";
+
   const handleApplyButtom = e => {
     e.preventDefault();
     checkCoupom();
   };
   const checkCoupom = () => {
-    const enabledCoupon = cart.coupons.filter(c => c.key === query);
-    if (
-      enabledCoupon.length > 0 &&
-      (enabledCoupon[0].type === "Fixed" ||
-        enabledCoupon[0].type === "Percentual")
-    ) {
+    console.log(isShippingCoupon);
+    if (isFixedCoupon) {
       setError({ ...error, status: false });
       dispatch(cartCouponAdd(enabledCoupon));
-    } else if (
-      enabledCoupon.length > 0 &&
-      enabledCoupon[0].type === "Free Shipping" &&
-      cart.subtotal >= enabledCoupon[0].min
-    ) {
+    } else if (isShippingCoupon && cart.subtotal >= enabledCoupon[0].min) {
       setError({ ...error, status: false });
       dispatch(cartCouponAdd(enabledCoupon));
-    } else if (
-      enabledCoupon.length > 0 &&
-      enabledCoupon[0].type === "Free Shipping" &&
-      cart.subtotal < enabledCoupon[0].min
-    ) {
+    } else if (isShippingCoupon && cart.subtotal < enabledCoupon[0].min) {
       setError({
         status: true,
         message: `Minimum subtotal requirement to use this coupon is ${enabledCoupon[0].min}`
