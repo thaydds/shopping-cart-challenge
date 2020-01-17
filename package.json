@@ -6,6 +6,8 @@
     "@testing-library/jest-dom": "^4.1.2",
     "@testing-library/react": "^9.3.0",
     "@types/jest": "^24.0.19",
+    "cross-env": "^6.0.3",
+    "husky": "^4.0.10",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
@@ -18,8 +20,14 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "test": "cross-env CI=true react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": " npm test"
+    }
   },
   "jest": {
     "testMatch": [
