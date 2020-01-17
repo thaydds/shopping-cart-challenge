@@ -8,7 +8,6 @@ const CartCoupon = () => {
   const [error, setError] = useState({ status: false, message: "" });
   const cart = useSelector(state => state);
   const dispatch = useDispatch();
-  console.log(cart);
   const enabledCoupon = cart.coupons.filter(c => c.key === query);
   const isFixedCoupon =
     enabledCoupon.length > 0 &&
@@ -22,7 +21,6 @@ const CartCoupon = () => {
     checkCoupom();
   };
   const checkCoupom = () => {
-    console.log(isShippingCoupon);
     if (isFixedCoupon) {
       setError({ ...error, status: false });
       dispatch(cartCouponAdd(enabledCoupon));
