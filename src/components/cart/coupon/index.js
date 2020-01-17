@@ -48,30 +48,25 @@ const CartCoupon = () => {
 
   return (
     <div className="coupon_container">
-      <ul>
-        <li>
-          <span>Coupon</span>
-          <form className="coupon_container__form">
-            <input
-              value={query}
-              data-testid="input-coupon"
-              onChange={e => setQuery(e.target.value.toUpperCase().trim())}
-              type="text"
-            />
-            <button
-              data-testid="add-coupon"
-              onClick={e => handleApplyButtom(e)}
-            >
-              Apply
-            </button>
-            {error.status && (
-              <div data-testid="error-message" className="error-message">
-                {error.message}
-              </div>
-            )}
-          </form>
-        </li>
-      </ul>
+      <div className="teste">
+        <p>Coupon</p>
+        <div className="coupon_container__form">
+          <input
+            value={query}
+            data-testid="input-coupon"
+            onChange={e => setQuery(e.target.value.toUpperCase().trim())}
+            type="text"
+          />
+          <button data-testid="add-coupon" onClick={e => handleApplyButtom(e)}>
+            Apply
+          </button>
+          {error.status && (
+            <div data-testid="error-message" className="error-message">
+              {error.message}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

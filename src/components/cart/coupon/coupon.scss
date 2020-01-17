@@ -5,14 +5,18 @@ $blue-default: #3f51b5;
     float: right;
     padding-right: 40px;
   }
-  ul {
-    list-style: none;
-    li {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
+
+  .teste {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
   }
+
   button {
     background-color: white;
     color: $blue-default;
@@ -29,5 +33,8 @@ $blue-default: #3f51b5;
     border-bottom: solid black 1px;
     padding: 10px;
     text-transform: uppercase;
+    @media (max-width: 750px) {
+      width: 100px;
+    }
   }
 }
