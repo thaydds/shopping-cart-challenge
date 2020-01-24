@@ -1,0 +1,40 @@
+$blue-default: #3f51b5;
+
+.coupon_container {
+  &__form {
+    float: right;
+    padding-right: 40px;
+  }
+
+  .teste {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+
+  button {
+    background-color: white;
+    color: $blue-default;
+    border: solid $blue-default 1px;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: solid black 1px;
+    padding: 10px;
+    text-transform: uppercase;
+    @media (max-width: 750px) {
+      width: 100px;
+    }
+  }
+}

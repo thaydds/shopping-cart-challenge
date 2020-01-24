@@ -1,0 +1,22 @@
+body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(66, 77, 176, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.header_container {
+  color: black;
+  background-color: white;
+  h1 {
+    text-align: center;
+  }
+}
+
+.divider {
+  border-bottom: 2px solid black;
+  margin: 3%;
+}
